@@ -1,0 +1,137 @@
+ @font-face {
+    font-family: "Bebas Neue"; 
+    src: url(../fonts/BebasNeueBold.ttf); 
+}
+ 
+ html, body {
+    height:100%;
+}
+ body {
+	background: url(../img/body_bg.png) 0 0 repeat;
+}
+.page{
+	padding: 0;
+	min-height: 100%;
+	background: url(../img/content_bg.png) 0 0 repeat;
+	box-shadow: 0 0 15px #777;
+} 
+header.container {
+	height: 100px;
+	padding: 0;
+	margin-bottom: 10px;
+	
+}
+main.container {
+	background-color: #555;
+}
+footer.container {
+	height: 110px;
+	background-color: #322f2f;
+	clear: both;
+	margin: -110px auto 0;
+	padding-top: 10px;
+}
+.clr {
+	height: 100px;
+	margin-top: 20px;
+}
+
+.navbar {
+	border: none;
+	border-radius: 0;
+	height: 100%;
+	margin: 0;
+}
+
+.navbar-default {
+	background-color: #322f2f;
+}
+
+.navbar > .container-fluid {
+	height: 100%;
+}
+
+.navbar-brand {
+	height: 100px;
+	padding: 15px 10px 15px 10px;
+}
+
+.mainlogo {
+	width: 280px;
+	height: 100%;
+	background: url(../img/main_logo.png) 0 -10px no-repeat;
+}
+
+button.navbar-toggle {
+	margin-top: 32px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #fff;
+	font-size: 18px;
+	font-family: "Bebas Neue",sans-serif;
+	font-weight: 400;
+	text-align: center;
+	letter-spacing: 0.5px;
+}
+.navbar-default .navbar-nav > li:hover a{
+	color: #78F6D9;
+}
+.navbar-default .navbar-nav > li.active > a{
+	color: #78F6D9;
+	background-color: transparent;
+}
+.navbar-default .navbar-nav > li.active > a:hover{
+	color: #78F6D9;
+	background-color: transparent;
+}
+.navbar-default .navbar-nav > li{
+	background-color: #322f2f;
+	border-bottom: 1px solid #777;
+}
+nav.nav {
+	margin-top: 0.5px;
+}
+
+@media (min-width: 768px) { 
+	.mainlogo {
+		width: 50px;
+		background: url(../img/titlelogo.png) 0 0 no-repeat;
+	}
+	.navbar-brand {
+		padding: 22.5px 10px 22.5px 20px;
+	}
+	nav.nav {
+	padding: 25px 0;
+	}
+	.navbar-default .navbar-nav > li{
+		border-bottom: none;
+	}
+}
+
+@media (min-width: 992px) { 
+	.mainlogo {
+		width: 280px;
+		background: url(../img/main_logo.png) 0 -10px no-repeat;
+	}
+	.navbar-brand {
+		padding: 15px 10px 15px 10px;
+	}
+	nav.nav {
+	padding: 25px 0;
+	}
+	.navbar-default .navbar-nav > li{
+		border-bottom: none;
+	}
+}
+
+@media (min-width: 1200px) { 
+	
+	nav.nav {
+		width: 800px;
+		margin-left: 20px;
+	}
+	.navbar-default .navbar-nav > li{
+		width: 130px;
+	}
+}
