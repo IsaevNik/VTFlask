@@ -89,10 +89,55 @@ button.navbar-toggle {
 	background-color: #322f2f;
 	border-bottom: 1px solid #777;
 }
+.navbar-default .navbar-nav > li:first-child{
+	border-top: 1px solid #777;
+}
 nav.nav {
-	margin-top: 0.5px;
+	margin-top: 0;
 }
 
+footer p{
+	line-height: 22px;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 400;
+	margin-bottom: 0;
+}
+footer a {
+	color: #78F6D9;
+	font-size: 15px;
+}
+
+.text2 p {
+	text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.bg {
+	background: url(../img/cable2.png) no-repeat;
+	height: 96px;
+	position: relative;
+	top: 2px;
+	text-align: right;
+	left: 40px;
+}
+@media (max-width: 360px) {
+	.mainlogo {
+		width: 50px;
+		background: url(../img/titlelogo.png) 0 0 no-repeat;
+	}
+	.navbar-brand {
+		padding: 22.5px 10px 22.5px 20px;
+	}
+	
+	}
+@media (max-width: 470px) {
+	.fax {
+		display: none;
+	}
+	
+}
 @media (min-width: 768px) { 
 	.mainlogo {
 		width: 50px;
@@ -105,7 +150,16 @@ nav.nav {
 	padding: 25px 0;
 	}
 	.navbar-default .navbar-nav > li{
-		border-bottom: none;
+		border: none;
+	}
+	.navbar-default .navbar-nav > li:first-child{
+		border: none;
+	}
+	.bg {
+		left: 0;
+	}
+	.text2 p {
+		font-size: 16px;
 	}
 }
 
@@ -120,8 +174,8 @@ nav.nav {
 	nav.nav {
 	padding: 25px 0;
 	}
-	.navbar-default .navbar-nav > li{
-		border-bottom: none;
+	.bg {
+		left: 80px;
 	}
 }
 
@@ -133,5 +187,16 @@ nav.nav {
 	}
 	.navbar-default .navbar-nav > li{
 		width: 130px;
+	}
+	.navbar-brand {
+		padding: 15px 10px 15px 20px;
+	}
+	footer p{
+	line-height: 22px;
+	font-size: 14px;
+	font-weight: 400;
+	}
+	.bg {
+		left: 130px;
 	}
 }
