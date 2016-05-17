@@ -57,7 +57,7 @@ footer.container {
 }
 
 .mainlogo {
-	width: 280px;
+	width: 272px;
 	height: 100%;
 	background: url(../img/main_logo.png) 0 -10px no-repeat;
 }
@@ -123,12 +123,13 @@ footer a {
 	left: 40px;
 }
 @media (max-width: 360px) {
+
 	.mainlogo {
-		width: 50px;
-		background: url(../img/titlelogo.png) 0 0 no-repeat;
+		width: 231px;
+		background: url(../img/main_logo_xs.png) 0 0 no-repeat;
 	}
 	.navbar-brand {
-		padding: 22.5px 10px 22.5px 20px;
+		padding: 25px 10px 23px 10px;
 	}
 	
 	}
@@ -165,11 +166,11 @@ footer a {
 
 @media (min-width: 992px) { 
 	.mainlogo {
-		width: 280px;
+		width: 272px;
 		background: url(../img/main_logo.png) 0 -10px no-repeat;
 	}
 	.navbar-brand {
-		padding: 15px 10px 15px 10px;
+		padding: 15px 20px 15px 10px;
 	}
 	nav.nav {
 	padding: 25px 0;
