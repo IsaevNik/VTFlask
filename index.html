@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ВОЛСтелеком</title>
 	<link href="static/img/titlelogo.png" rel="icon" type="image/png"/>
+	
+
 
     <!-- Bootstrap -->
     <link href="static/css/bootstrap.css" rel="stylesheet">
 	<link href="static/css/style.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries static/img/slider/1.jpg-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -49,7 +51,12 @@
 			</div>
 		</header>
 		<div class="container-fluid slider hidden-xs">
-			
+			<div id="owl-slider" class="owl-carousel owl-theme">
+				 <div class="item"> <img src="static/img/slider/1.jpg"> </div>
+				 <div class="item"> <img src="static/img/slider/4.jpg"> </div>
+				 <div class="item"> <img src="static/img/slider/6.jpg"> </div>
+			</div>
+
 		</div>
 		<main class="container">
 			<p>
@@ -71,13 +78,13 @@
 			<div class="col-sm-3 col-xs-5 text2">
 				<p>ЗАО "ВОЛСтелеком"</p>
 				<p>&copy;2016</p>
-				<div class="row">
+				<!--<div class="row">
 					<div class="hidden-xs col-sm-4 col-sm-offset-5 col-md-4 col-md-offset-6 col-lg-4 col-lg-offset-7">
 						<a href="http://top.mail.ru/jump?from=2521740">
 							<img src="//top-fwz1.mail.ru/counter?id=2521740;t=397;l=1" style="border:0;" height="31" width="88" alt="Рейтинг@Mail.ru">
 						</a>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</footer>
@@ -86,6 +93,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/js/bootstrap.min.js"></script>
+	<!-- Основные стили -->
+	<link rel="stylesheet" href="static/img/slider/owl-carousel/owl.carousel.css">
+
+	<!-- Тема по умолчанию -->
+	<link rel="stylesheet" href="static/img/slider/owl-carousel/owl.theme.css">
+
+	<!-- Подключаем плагин -->
+	<script src="static/img/slider/owl-carousel/owl.carousel.js"></script>
 	<script src="static/js/loader.js"></script>
   </body>
 </html>

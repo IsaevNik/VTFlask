@@ -122,6 +122,21 @@ footer a {
 	text-align: right;
 	left: 40px;
 }
+
+.slider {
+	background-color: transparent;
+	margin-bottom: 10px;
+	padding: 0;
+} 
+#owl-slider .item img{
+		display: block;
+		width: 100%;
+		height: auto;
+}
+.owl-pagination {
+	display: none;
+}
+
 @media (max-width: 360px) {
 
 	.mainlogo {
@@ -135,13 +150,7 @@ footer a {
 	}
 	
 	
-	.slider {
-		height: 405px;
-		background-color: #111;
-		margin-bottom: 10px;
-	} 
-	
-	/*slider */
+
 
 @media (max-width: 530px) {
 	.fax {
