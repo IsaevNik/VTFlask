@@ -1,12 +1,12 @@
 $(document).ready(function(){
-	$("main").load("main.html");
-    //$(".main_button").attr("id", "current_page");
-    $("main").attr("id", "main");
+	$(".content").load("main.html");
+    $(".content").attr("id", "main");
 	$(".owl-carousel").owlCarousel({
 		navigation : false, // показывать кнопки next и prev 
 		autoPlay: 3000,
-		//slideSpeed : 1000,
-		paginationSpeed : 1500,
+		slideSpeed : 8000,
+		paginationSpeed : 4000,
+
 	 
 		items : 1, 
 		itemsDesktop : false,
@@ -14,18 +14,26 @@ $(document).ready(function(){
 		itemsTablet: false,
 		itemsMobile : false
 	});
-	var owl = $(".owl-carousel").data('owlCarousel');
-	owl.destroyControlls();
+	/*var owl = $(".owl-carousel").data('owlCarousel');
+	owl.destroyControlls();*/
 });
 
-$(".navbar-nav .li").click(function(){
-    //$(".navigation_item[id='current_page']").removeAttr("id");
+$(".navbar-nav > li").click(function(){
+	
+    var current_page = $(".navbar-nav > li.active")
+	$(current_page).toggleClass("active");
+	
     var page = $("a",this).attr("href");
-    //var content_id = page.split('.')[0];
-    //$(".content").attr("id", content_id);
+    var content_id = page.split('.')[0];
+	
+    $(".content").attr("id", content_id);
     $(".content").load(page);
-    //$(this).attr("id", "current_page");
-    return false;
+	$(this).toggleClass("active");
+	
+	if ($(".collapse").hasClass("in")) {
+		$(".collapse").collapse("hide");
+	}
+	return false;
 });
 
 

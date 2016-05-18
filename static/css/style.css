@@ -2,12 +2,13 @@
     font-family: "Bebas Neue"; 
     src: url(../fonts/BebasNeueBold.ttf); 
 }
- 
+/*Page settings start*/ 
  html, body {
     height:100%;
 }
  body {
 	background: url(../img/body_bg.png) 0 0 repeat;
+	
 }
 .page{
 	padding: 0;
@@ -15,27 +16,17 @@
 	background: url(../img/content_bg.png) 0 0 repeat;
 	box-shadow: 0 0 15px #777;
 } 
+
+/*Page settings end*/
+
+/*Header settings start*/
 header.container {
 	height: 100px;
 	padding: 0;
 	margin-bottom: 10px;
-	
+	box-shadow: 0 0 10px #322f2f;
 }
-main.container {
-	background-color: #555;
-}
-footer.container {
-	height: 110px;
-	background-color: #322f2f;
-	clear: both;
-	margin: -110px auto 0;
-	padding-top: 10px;
-}
-.clr {
-	height: 100px;
-	margin-top: 20px;
-}
-
+/*Navigation settings start*/
 .navbar {
 	border: none;
 	border-radius: 0;
@@ -74,17 +65,16 @@ button.navbar-toggle {
 	text-align: center;
 	letter-spacing: 0.5px;
 }
-.navbar-default .navbar-nav > li:hover a{
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 	color: #78F6D9;
+
 }
-.navbar-default .navbar-nav > li.active > a{
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	color: #78F6D9;
-	background-color: transparent;
+	background-color: #322f2f;
 }
-.navbar-default .navbar-nav > li.active > a:hover{
-	color: #78F6D9;
-	background-color: transparent;
-}
+
 .navbar-default .navbar-nav > li{
 	background-color: #322f2f;
 	border-bottom: 1px solid #777;
@@ -95,6 +85,35 @@ button.navbar-toggle {
 nav.nav {
 	margin-top: 0;
 }
+
+
+.navbar-collapse.in, .navbar-collapsing {
+	position: relative;
+	z-index: 1;
+}
+
+/*Navigation settings end*/
+/*Header settings end*/
+
+
+
+
+
+/*Footer settings start*/
+footer.container {
+	height: 110px;
+	background-color: #322f2f;
+	clear: both;
+	margin: -110px auto 0;
+	padding-top: 10px;
+	box-shadow: 0 0 10px #322f2f;
+}
+.clr {
+	height: 100px;
+	margin-top: 20px;
+}
+
+
 
 footer p{
 	line-height: 22px;
@@ -122,6 +141,57 @@ footer a {
 	text-align: right;
 	left: 40px;
 }
+/*Footer settings end*/
+
+/*Main settings start*/
+main.container {
+	padding: 0 20px;
+}
+.content p {
+	text-align: justify;
+	text-indent: 40px;
+}
+.content a {
+	color: #41C695;
+	font-weight: 600;
+}
+
+.main-imgs {
+	border-bottom: 1px solid #999;
+	margin-bottom: 10px;
+	padding: 20px;
+}
+
+.main-imgs img {
+	box-shadow: 0 0 10px #78F6D9;
+}
+
+.history_long, .staff_long, .activity_long {
+	display: none;
+}
+
+.article h4 {
+	text-align: center;
+	border-top: 1px solid #999;
+	padding-top: 10px;
+}
+
+#main .article p {
+	font-size: 14px; 
+	line-height: 16px; 
+	text-align: center;
+	text-indent: 0;
+}
+.more, .history_long>span, .staff_long>span, .activity_long>span  {
+	color: #41C695;
+	font-size: 14px; 
+	font-weight: 600;
+	line-height: 16px; 
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+/*Main settings end*/
 
 .slider {
 	background-color: transparent;
@@ -133,31 +203,51 @@ footer a {
 		width: 100%;
 		height: auto;
 }
-.owl-pagination {
-	display: none;
+/*Services settings start*/
+#services li {
+	line-height: 20px;
+}
+#services ul {
+	list-style-image: url(../img/ic_label.png);
+}
+/*Services settings end*/
+/*Contacts settings start*/
+#contacts .map{
+    box-shadow: 0 0 10px #322f2f;
+	width: 280px;
+	height: 380px;
+
+}
+#contacts .map:hover{
+    box-shadow: 0 0 10px #78F6D9;
 }
 
-@media (max-width: 360px) {
 
+/*Contacts settings end*/
+@media (max-width: 360px) {
 	.mainlogo {
 		width: 231px;
 		background: url(../img/main_logo_xs.png) 0 0 no-repeat;
 	}
 	.navbar-brand {
 		padding: 25px 10px 23px 10px;
-	}
+	}	
+}
 	
-	}
-	
-	
-
-
 @media (max-width: 530px) {
 	.fax {
 		display: none;
 	}
 	
 }
+
+@media (max-width: 630px) {
+	.fax {
+		display: none;
+	}
+	
+}
+
 @media (min-width: 768px) { 
 	.mainlogo {
 		width: 50px;
@@ -181,6 +271,11 @@ footer a {
 	.text2 p {
 		font-size: 16px;
 	}
+	#contacts .map{
+		width: 595px;
+		height: 450px;
+	}
+	
 }
 
 @media (min-width: 992px) { 
@@ -192,11 +287,27 @@ footer a {
 		padding: 15px 20px 15px 10px;
 	}
 	nav.nav {
-	padding: 25px 0;
+		padding: 25px 0;
 	}
 	.bg {
 		left: 80px;
 	}
+	main.container p ,#services li {
+		font-size: 16px;
+	}
+	#services li {
+		line-height: 30px;
+	}
+	main.container {
+		padding: 0 30px;
+	}
+	#services ul {
+		margin-left: 30px;
+	}
+	#contacts address {
+		font-size: 16px;
+	}
+	
 }
 
 @media (min-width: 1200px) { 
@@ -212,9 +323,9 @@ footer a {
 		padding: 15px 10px 15px 20px;
 	}
 	footer p{
-	line-height: 22px;
-	font-size: 14px;
-	font-weight: 400;
+		line-height: 22px;
+		font-size: 14px;
+		font-weight: 400;
 	}
 	.bg {
 		left: 130px;
