@@ -1,21 +1,13 @@
 $(document).ready(function(){
 	$(".content").load("main.html");
     $(".content").attr("id", "main");
-	$(".owl-carousel").owlCarousel({
-		navigation : false, // показывать кнопки next и prev 
-		autoPlay: 3000,
-		slideSpeed : 8000,
-		paginationSpeed : 4000,
-
-	 
-		items : 1, 
-		itemsDesktop : false,
-		itemsDesktopSmall : false,
-		itemsTablet: false,
-		itemsMobile : false
+	$(".carousel").carousel({
+		interval: 4000
 	});
-	/*var owl = $(".owl-carousel").data('owlCarousel');
-	owl.destroyControlls();*/
+	$(".carousel").carousel('cycle');
+	
+	
+	
 });
 
 $(".navbar-nav > li").click(function(){

@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ВОЛСтелеком</title>
 	<link href="static/img/titlelogo.png" rel="icon" type="image/png"/>
-	<!-- Основные стили -->
-	<link rel="stylesheet" href="static/img/slider/owl-carousel/owl.carousel.css">
 
-	<!-- Тема по умолчанию -->
-	<link rel="stylesheet" href="static/img/slider/owl-carousel/owl.theme.css">
 
     <!-- Bootstrap -->
     <link href="static/css/bootstrap.css" rel="stylesheet">
@@ -54,12 +50,34 @@
 			</div>
 		</header>
 		<div class="container-fluid slider hidden-xs">
+		
+			<div id="carousel" class="carousel slide carousel-fade">
+				  <ol class="carousel-indicators">
+					<li data-target="#carousel" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel" data-slide-to="1"></li>
+					<li data-target="#carousel" data-slide-to="2"></li>
+					<li data-target="#carousel" data-slide-to="3"></li>
+					<li data-target="#carousel" data-slide-to="4"></li>
+				  </ol>
+				  
+				  <div class="carousel-inner">
+					<div class="active item"><img src="static/img/slider/1.jpg" class="img-responsive" alt=""></div>
+					<div class="item"><img src="static/img/slider/2.jpg" class="img-responsive" alt=""></div>
+					<div class="item"><img src="static/img/slider/3.jpg" class="img-responsive" alt=""></div>
+					<div class="item"><img src="static/img/slider/4.jpg" class="img-responsive" alt=""></div>
+					<div class="item"><img src="static/img/slider/5.jpg" class="img-responsive" alt=""></div>
+				  </div>
 
+				  
+			</div>
+			<!--
+				<a class="carousel-control left" href="#carousel" data-slide="prev"></a>
+				<a class="carousel-control right" href="#carousel" data-slide="next"></a>
+			
+			-->
 
 		</div>
 		<main class="container content">
-			<p>
-			</p>
 		</main>
 		<div class="container clr"></div>
 	</div>
@@ -94,7 +112,6 @@
     <script src="static/js/bootstrap.min.js"></script>
 	
 	<!-- Подключаем плагин -->
-	<script src="static/img/slider/owl-carousel/owl.carousel.js"></script>
 	<script src="static/js/loader.js"></script>
   </body>
 </html>
