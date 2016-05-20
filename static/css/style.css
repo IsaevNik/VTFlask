@@ -266,6 +266,33 @@ main.container {
 	margin-top: 20px;
 }
 /*clients setting end*/
+
+/*certifications setting start*/
+.certification_list {
+	margin-top: 25px;
+}
+.certification_list_item {
+	border-bottom: solid 1px #999;
+	margin-bottom: 20px; 
+}
+
+.certification_list_item img {
+	box-shadow: 0 0 10px #777; 
+}
+
+.certification_list_item img:hover {
+    box-shadow: 0 0 10px #78F6D9;
+	cursor: pointer;
+}
+#certificates .certification_list_item p {
+	text-align: center; 
+	margin-bottom: 10px;
+	text-indent: 0;	
+	margin-top: 7px;
+}
+/*certifications setting end*/
+
+
 @media (max-width: 360px) {
 	.mainlogo {
 		width: 233px;
