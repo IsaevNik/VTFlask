@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block page %}
+<header class="container">
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Открыть навигацию</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<div class="mainlogo"></div>
+				</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<nav class="nav navbar-nav">
+					 <li class="active"><a href="/main_page">Главная</a></li>
+					 <li><a href="/our_clients">Наши клиенты</a></li>
+					 <li><a href="/services">Услуги</a></li>
+					 <li class="hidden-xs"><a href="/equipments">Оборудование</a></li>
+					 <li class="hidden-xs"><a href="/certificates">Сертификаты</a></li>
+					 <li><a href="/contacts">Контакты</a></li>
+				</nav>
+		</div>
+		</div>
+		
+	</div>
+</header>
+	<div class="container-fluid slider hidden-xs">
+	
+		<div id="carousel" class="carousel slide carousel-fade">
+			  <ol class="carousel-indicators">
+				<li data-target="#carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel" data-slide-to="1"></li>
+				<li data-target="#carousel" data-slide-to="2"></li>
+				<li data-target="#carousel" data-slide-to="3"></li>
+				<li data-target="#carousel" data-slide-to="4"></li>
+			  </ol>
+			  
+			  <div class="carousel-inner">
+				<div class="active item"><img src="{{url_for(
+				'static',filename='img/slider/1.jpg')}}" class="img-responsive" alt=""></div>
+				<div class="item"><img src="{{url_for(
+				'static',filename='img/slider/2.jpg')}}" class="img-responsive" alt=""></div>
+				<div class="item"><img src="{{url_for(
+				'static',filename='img/slider/3.jpg')}}" class="img-responsive" alt=""></div>
+				<div class="item"><img src="{{url_for(
+				'static',filename='img/slider/4.jpg')}}" class="img-responsive" alt=""></div>
+				<div class="item"><img src="{{url_for(
+				'static',filename='img/slider/5.jpg')}}" class="img-responsive" alt=""></div>
+			  </div>
+
+			  
+		</div>
+		<!--
+			<a class="carousel-control left" href="#carousel" data-slide="prev"></a>
+			<a class="carousel-control right" href="#carousel" data-slide="next"></a>
+		
+		-->
+
+	</div>
+	<main class="container content">
+	{%block content%}
+	{%endblock%}
+	<script src="{{ url_for('static',filename='js/main.js')}}"></script>
+	</main>
+	<div class="container clr"></div>
+{%endblock%}
