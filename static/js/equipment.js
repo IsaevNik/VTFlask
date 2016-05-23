@@ -2,7 +2,6 @@ var main = function(){
 	
 }
 
-
 $(document).ready(main);
 
 $('#show').on('click', function(){
