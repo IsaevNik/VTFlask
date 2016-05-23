@@ -292,6 +292,34 @@ main.container {
 }
 /*certifications setting end*/
 
+/*equipment setting start*/
+.panel-title a {
+	text-decoration: none;
+	color: #fff;
+}
+.panel-title a.active {
+	color: #78F6D9;
+}
+.panel-default > .panel-heading {
+	cursor: pointer;
+	background-color: #322f2f;
+}
+
+.btn-default, .btn-default:focus {
+	background-color: #41C695;
+	color: #322f2f;
+}
+
+
+
+.form {
+	width: 60%;
+}
+.form-control:focus, .form-control:active {
+	box-shadow: 0 0 10px #78F6D9;
+	border: 1px solid #78F6D9;
+}
+/*equipment setting end*/
 
 @media (max-width: 360px) {
 	.mainlogo {
