@@ -312,6 +312,7 @@ main.container {
 	border-right: 2px solid #777;
 	border-bottom: 2px solid #777;
 	padding-left: 0;
+	margin-bottom: 10px;
 }
 .levels {
 	list-style-type: none;
@@ -319,6 +320,7 @@ main.container {
 }
 .levels li {
 	line-height: 42px;
+	text-align: center;
 }
 .levels li > a{
 	text-decoration: none;
@@ -346,9 +348,7 @@ main.container {
 	background-color: #322f2f;
 }
 
-
-
- .panel-transparent {
+.panel-transparent {
     background: none;
 }
 
@@ -399,10 +399,13 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .price {
-	padding-top: 4px;
+	padding-top: 5px;
 }
-.price p{
+
+#equipments .price-manager p{
 	font-size: 12px;
+	text-align: left;
+	padding-top: 5px;
 }
 .price div:first-child {
 	padding-right: 2px;

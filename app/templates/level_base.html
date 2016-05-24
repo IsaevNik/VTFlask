@@ -1,0 +1,51 @@
+<div class="panel-group" id="accordion">
+	{% for sublevel,items in level.items() %}
+		<div class="panel panel-default panel-transparent">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#">
+						{{ sublevel }}
+					</a>
+				</h4>
+			</div>
+			<div class="panel-collapse collapse">
+				<div class="panel-body">
+					{%for item in items%}
+						<div class="row">
+							<div class="col-sm-2">
+								<img src="{{ url_for('static', filename = item['img'])}}" alt="{{ item['name'] }}" class="img-responsive center-block}}"></img>
+							</div>
+							<div class="col-sm-6 description">
+								<p>{{ item['name'] }}</p>
+							</div>
+							{% if item['price'] != 0.0 %}
+								<div class="col-sm-2">
+									<div class="input-group">
+										<span class="input-group-addon up">&#9650;</span>
+										<input type="number" class="form-control" value="0"/>
+										<span class="input-group-addon down">&#9660;</span>
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div class="row price">
+										<div class="col-md-7 col-md-offset-2 col-sm-7 col-md-offset-1">
+											<p><b>{{ item['price'] }}</b></p>
+										</div>
+										<div class="col-md-3 col-sm-4">
+											<img src="static/shop/rub.png" class="img-responsive hidden-sm">
+											<img src="static/shop/rub_sm.png" class="img-responsive visible-sm">
+										</div>
+									</div>
+								</div>
+							{% else %}
+								<div class="col-sm-4 price-manager">
+									<p> Уточните цену у менеджера </p>
+								</div>
+							{%endif%}
+						</div>
+					{%endfor%}	
+				</div>
+			</div>
+		</div>
+	{%endfor%}
+<script src="static/js/sublevel.js"></script>

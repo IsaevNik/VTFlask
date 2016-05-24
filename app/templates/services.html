@@ -1,5 +1,5 @@
 
-<h2>Услуги</h2>
+<h1>Услуги</h1>
 
 <p>
 	ЗАО «ВОЛСтелеком» предоставляет весь комплекс услуг по созданию объектов связи с последующей их эксплуатацией. 
@@ -15,18 +15,9 @@
 		<li>Техническая эксплуатация сооружений связи</li>
 		<li>Аварийно-восстановительные работы на сооружениях связи</li>
 	</ul>
-<p class="advertising">
+<p class="advertising hidden-xs">
 Наша компания так же предоставляет <a href="#"> широкий выбор волоконно-оптического оборудования пассивного типа. </a>
 </p>
-<!--script>
-	$('.advertising a').click(function(){
-		$(".content").attr("id", "equipment");
-		$(".content").load("equipment.html");
-		var currentPage = $('.navbar-nav > li.active');
-		var nextPage = currentPage.next();
-		currentPage.removeClass("active");
-		nextPage.addClass("active");
-	});
-</script-->
+<script src="{{ url_for('static',filename='js/services.js')}}"></script>
 
 

@@ -52,5 +52,65 @@ def page_not_found(e):
 @app.route('/passivnieComponentiVols')
 def passivnieComponentiVols():
 	level = get_table('PassivnyeKomponentyVols')
-	print(len(level))
-	return render_template('passivnieComponentiVols.html')
+	return render_template('level_base.html', level=level)
+
+@app.route('/krossOpticheskiy')
+def krossOpticheskiy():
+	level = get_table('KrossOpticheskiy')
+	return render_template('level_base.html', level=level)
+
+@app.route('/muftaOpticheskaya')
+def muftaOpticheskaya():
+	level = get_table('MuftaOpticheskaya')
+	return render_template('level_base.html', level=level)
+
+@app.route('/instrumentDlyaRazdelkiVols')
+def instrumentDlyaRazdelkiVols():
+	level = get_table('InstrumentDlyaRazdelkiVols')
+	return render_template('level_base.html', level=level)
+
+@app.route('/diagnostikaVols')
+def diagnostikaVols():
+	level = get_table('DiagnostikaVols')
+	return render_template('level_base.html', level=level)
+
+@app.route('/svarochnyeApparaty')
+def svarochnyeApparaty():
+	level = get_table('SvarochnyeApparaty')
+	return render_template('level_base.html', level=level)
+
+@app.route('/reflektometrOpticheskiy')
+def reflektometrOpticheskiy():
+	level = get_table('ReflektometrOpticheskiy')
+	return render_template('level_base.html', level=level)
+
+@app.route('/rashodnyeMaterialy')
+def rashodnyeMaterialy():
+	level = get_table('RashodnyeMaterialy')
+	return render_template('level_base.html', level=level)
+
+@app.route('/dopolnitelnoeOborudovanie')
+def dopolnitelnoeOborudovanie():
+	level = get_table('DopolnitelnoeOborudovanie')
+	return render_template('level_base.html', level=level)
+
+@app.route('/patchKordyOpticheskie')
+def patchKordyOpticheskie():
+	level = get_table('PatchKordyOpticheskie')
+	level.pop(u'%u041F%u0430%u0442%u0447%20%u043A%u043E%u0440%u0434%u044B%20%u043E%u043F%u0442%u0438%u0447%u0435%u0441%u043A%u0438%u0435', None)
+	return render_template('level_base.html', level=level)
+
+@app.route('/shkafyIStoiki')
+def shkafyIStoiki():
+	level = get_table('ShkafyIStoiki')
+	return render_template('level_base.html', level=level)
+
+@app.route('/opticheskieKonnektory')
+def opticheskieKonnektory():
+	level = get_table('OpticheskieKonnektory')
+	return render_template('level_base.html', level=level)
+
+@app.route('/kabelnyeSborki')
+def kabelnyeSborki():
+	level = get_table('KabelnyeSborki')
+	return render_template('level_base.html', level=level)
