@@ -304,6 +304,36 @@ main.container {
 }
 /*certifications setting end*/
 /*equipment setting start*/
+#equipments > .row {
+	padding-left: 15px;
+}
+
+.aside {
+	border-right: 2px solid #777;
+	border-bottom: 2px solid #777;
+	padding-left: 0;
+}
+.levels {
+	list-style-type: none;
+	padding-left: 0;
+}
+.levels li {
+	line-height: 42px;
+}
+.levels li > a{
+	text-decoration: none;
+	font-size: 16px;
+	height: 100%;
+	color: #322f2f;
+	display: inline-block;
+}
+.levels li>a:hover{
+	color: #41C695;
+}
+.levels li.active > a {
+	color: #41C695;
+}
+
 .panel-title a {
 	text-decoration: none;
 	color: #fff;
@@ -316,12 +346,77 @@ main.container {
 	background-color: #322f2f;
 }
 
-.btn-default, .btn-default:focus {
-	background-color: #41C695;
-	color: #322f2f;
+
+
+ .panel-transparent {
+    background: none;
 }
 
+.panel-transparent .panel-body{
+	background: rgba(255, 255, 255, 0.4)!important;
+}
 
+.panel-body > .row {
+	margin-bottom: 10px;
+}
+.panel-body p {
+	text-indent: 0;
+}
+
+.panel-body .input-group {
+	padding-top: 3px;
+}
+.panel-body .input-group > input{
+	height: 24px;
+	padding: 1px 1px 2px 1px;
+	border: solid 1px #333;
+	text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.panel-body .input-group > input:focus, .panel-body .input-group > input:active{
+	box-shadow: none;
+}
+
+.description {
+	padding-top: 5px;
+}
+
+.input-group-addon{
+	padding: 2px 4px;
+	color: #fff;
+	background-color: #322f2f;
+	border: solid 1px #333;
+	cursor: pointer;
+}
+.input-group-addon.click{
+	color: #78F6D9;
+}
+
+.price {
+	padding-top: 4px;
+}
+.price p{
+	font-size: 12px;
+}
+.price div:first-child {
+	padding-right: 2px;
+}
+.price div:last-child {
+	padding-left: 3px;
+	padding-top: 4px;
+}
+.price div:first-child p{
+	text-align: right;
+}
+textarea {
+	margin-bottom: 10px;
+}
 
 .form {
 	width: 60%;
@@ -330,6 +425,18 @@ main.container {
 	box-shadow: 0 0 10px #78F6D9;
 	border: 1px solid #78F6D9;
 }
+
+.btn-success, .btn-success:active, .btn-success:visited {
+	background-color: #322f2f;
+	border-color: #333;
+	color: #fff;
+}
+.btn-success:hover, .btn-success:focus {
+	color: #41C695;
+	background-color: #322f2f;
+	border: 1px solid #41C695;
+}
+
 /*equipment setting end*/
 
 @media (max-width: 360px) {
@@ -383,6 +490,14 @@ main.container {
 		width: 595px;
 		height: 450px;
 	}
+	.levels li > a{
+		font-size: 14px;
+	}
+	.levels li {
+		line-height: 20px;
+		margin-bottom: 10px;
+	}
+	
 	
 }
 
@@ -415,6 +530,10 @@ main.container {
 	#contacts address {
 		font-size: 16px;
 	}
+	.price p{
+		font-size: 16px;
+	}
+	
 	
 }
 
@@ -437,6 +556,17 @@ main.container {
 	}
 	.bg {
 		left: 130px;
+	}
+	.input-group {
+		padding: 3px 10px 0 20px;
+	}
+	.levels li > a{
+		font-size: 16px;
+		
+	}
+	.levels li {
+		line-height: 42px;
+		margin-bottom: 0;
 	}
 
 }

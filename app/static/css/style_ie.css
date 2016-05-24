@@ -1,0 +1,8 @@
+.navbar-default .navbar-nav > li > a{
+	text-decoration: none;
+	font-size: 13px;
+	font-family: "Arial", sans-serif;
+	color: #fff;
+	font-weight: 400;
+	text-transform: lowercase; 
+}
