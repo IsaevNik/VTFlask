@@ -294,35 +294,50 @@ main.container {
 /*certifications setting end*/
 
 /*equipment setting start*/
-#equipment > .row {
+#equipment .first, #equipment .second { /* change */
 	padding-left: 15px;
 }
 
-.aside {
+.aside { /* change */
 	border-right: 2px solid #777;
 	border-bottom: 2px solid #777;
-	padding-left: 0;
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 0 5px #322f2f;
+	padding: 0;
+	
 }
-.levels {
+.levels { /* change */
 	list-style-type: none;
 	padding-left: 0;
+	margin: 0;
 }
-.levels li {
-	line-height: 42px;
+.levels li { /* change */
+	line-height: 40px;
+	padding: 0 15px;
+	border-bottom: 1px #666 solid;
 }
-.levels li > a{
+.levels li:last-child {/* change */
+	border-bottom: none;
+}
+.levels li > a{ /* change */
 	text-decoration: none;
 	font-size: 16px;
 	height: 100%;
+	width: 100%;
+	text-align: center;
 	color: #322f2f;
 	display: inline-block;
 }
-.levels li>a:hover{
-	color: #41C695;
+.levels li:hover{ /* change */
+	background-color: rgba(102, 255, 204, 0.5);	
 }
-.levels li.active > a {
-	color: #41C695;
+.levels li:hover a { /* change */
+
 }
+.levels li.active { /* change */
+	background-color: rgba(102, 255, 204, 0.5);
+}
+
 
 .panel-title a {
 	text-decoration: none;
@@ -344,6 +359,7 @@ main.container {
 
 .panel-transparent .panel-body{
 	background: rgba(255, 255, 255, 0.4)!important;
+	border: 1px solid #322f2f;
 }
 
 .panel-body > .row {
@@ -353,14 +369,20 @@ main.container {
 	text-indent: 0;
 }
 
-.panel-body .input-group {
+.panel-body .input-group { /* change */
 	padding-top: 3px;
+	width: 70px;
+	float: left;
 }
 .panel-body .input-group > input{
 	height: 24px;
 	padding: 1px 1px 2px 1px;
 	border: solid 1px #333;
 	text-align: center;
+}
+.shoping-cart { /* change */
+	font-size: 28px;
+	cursor: pointer; 
 }
 
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
@@ -384,7 +406,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	border: solid 1px #333;
 	cursor: pointer;
 }
-.input-group-addon.click{
+.click{
 	color: #78F6D9;
 }
 
@@ -404,27 +426,42 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .price div:first-child p{
 	text-align: right;
 }
+.email, .comment {
+	display: none;
+	overflow: hidden;
+}
 textarea {
 	margin-bottom: 10px;
 }
-
-.form {
-	width: 60%;
+.user-form { /* change */
+	padding: 10px 15px;
+	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 0 5px #322f2f;
 }
+.form-group {
+	margin-bottom: 5px;
+}
+.focus-form { /* change */
+	box-shadow: 0 0 5px #78F6D9;
+	background: rgba(255, 255, 255, 0.6);
+}
+
 .form-control:focus, .form-control:active {
 	box-shadow: 0 0 10px #78F6D9;
 	border: 1px solid #78F6D9;
 }
 
-.btn-success, .btn-success:active, .btn-success:visited {
-	background-color: #322f2f;
-	border-color: #333;
+.btn-default, .btn-default:visited { /* change */
+	background-color: rgba(51, 51, 51, 0.9);
 	color: #fff;
 }
-.btn-success:hover, .btn-success:focus {
-	color: #41C695;
-	background-color: #322f2f;
-	border: 1px solid #41C695;
+.btn-default:hover { /* change */
+	background-color: rgba(51, 51, 51, 0.7);
+	color: #78F6D9;
+}
+.btn-default:active, .btn-default:active:hover, .btn-default:active:focus { /* change */
+	background-color: rgba(102, 255, 204, 0.5);
+	color: #322f2f;
 }
 
 /*equipment setting end*/
@@ -483,9 +520,10 @@ textarea {
 	.levels li > a{
 		font-size: 14px;
 	}
-	.levels li {
+	.levels li { /* change */
 		line-height: 20px;
-		margin-bottom: 10px;
+		padding-top: 5px; 
+		padding-bottom: 5px;
 	}
 	
 	
@@ -548,7 +586,7 @@ textarea {
 		left: 130px;
 	}
 	.input-group {
-		padding: 3px 10px 0 20px;
+		padding: 3px 10px 0 0;
 	}
 	.levels li > a{
 		font-size: 16px;
@@ -557,6 +595,8 @@ textarea {
 	.levels li {
 		line-height: 42px;
 		margin-bottom: 0;
+		padding-top: 0px; 
+		padding-bottom: 0px;
 	}
 
 }

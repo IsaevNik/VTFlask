@@ -1,8 +1,5 @@
 var main = function(){
 
-	
-
-	
 	$('.panel-heading').on('click',function(){
 		var parent = $(this).parent('.panel');
 		$('.collapse',parent).collapse('toggle');
@@ -28,6 +25,26 @@ var main = function(){
 			$(this).prev().val(0);
 		};
 		
+	});
+	$( ".shoping-cart" ).on('mousedown',function() {
+		$(this).addClass( "click" );
+	});
+	$( ".shoping-cart" ).on('mouseup',function() {
+		$( this ).removeClass( "click" );
+	});
+	$(".shoping-cart").on('click', function(){
+		var input_form = $(this).parent().prev();
+		var description = $(this).parents('.counter').prev();
+		var item_name = $("p",description).text();
+		var count = $("input", input_form).val();
+		var line = item_name + " кол-во." + count;
+		//alert(line);
+		if (count != 0){
+			$("<li>", {
+				"class": "clickme",
+				text: line,
+				}).appendTo(".client-cart");
+		}
 	});
 	
 }
