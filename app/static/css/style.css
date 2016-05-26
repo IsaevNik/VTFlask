@@ -6,6 +6,9 @@
  html, body {
     height:100%;
 }
+
+
+
  body {
 	background: url(../img/body_bg.png) 0 0 repeat;
 	
@@ -159,6 +162,11 @@ footer a {
 main.container {
 	padding: 0 20px;
 }
+
+#main_page .well {
+	box-shadow: 0 0 10px #777;
+	background-color: rgba(156, 156, 156, 0.4);
+}
 .content p {
 	text-align: justify;
 	text-indent: 40px;
@@ -309,6 +317,11 @@ main.container {
 }
 #equipments > p {
 	padding-left: 0;
+}
+
+#equipments .well {
+	box-shadow: 0 0 10px #777;
+	background-color: rgba(102, 255, 204, 0.5);
 }
 
 .first {

@@ -34,22 +34,28 @@ var main = function(){
  	});
  	$(".shoping-cart").on('click', function(){
  		var input_form = $(this).parent().prev();
+ 		var item_count = $("input", input_form).val(); //получаем колличество
+
  		var description = $(this).parents('.counter').prev();
- 		var item_name = $("p",description).text();
- 		var count = $("input", input_form).val();
- 		var line = item_name + " кол-во." + count;
+ 		var item_name = $("p",description).text(); //получаем название выбранного товара
+
+ 		var price_block = $(this).parents('.counter').prev(); 
+ 		var item_coast = $(".item-coast p",this).text();
+ 		
+ 		total_coast_of_item = +count * (+item_coast);
+ 		alert(total_coast_of_item);
 
  		var newItem = $('<li class="list-group-item"></li')
         .append('<span class="glyphicon glyphicon-remove-circle remove-item"></span>')
         .append($('<span/>',{
         	"class" : "count",
-        	text : count + " шт."
+        	text : item_count + " шт."
         }))
         .append($('<span/>',{
         	"class" : "name-item",
         	text : item_name
         }));
- 		//alert(line);
+		
  		if (count != 0){
  			$('.client-cart').prepend(newItem);
  		}
