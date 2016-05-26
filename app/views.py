@@ -1,6 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, redirect, url_for
+import json
 from app import app
 import sqlite3 as sql
+import codecs
 
 DATABASE_NAME = 'shop.db'
 
@@ -33,9 +35,35 @@ def our_clients():
 def services():
 	return render_template('services.html')
 
-@app.route('/equipments')
+
+
+
+
+@app.route('/equipments', methods=['GET','POST'])
 def equipments():
-	return render_template('equipments.html')
+	if request.method == 'GET':
+		return render_template('equipments.html')
+	else:
+		data = request.get_json()
+		client_name = data["client_name"]
+		client_telephon = data["client_telephon"]
+		client_email = data["client_email"]
+		client_comment = data["client_comment"]
+		items = data["items"]
+		msg = u'{:+^50}\n'.format(' New request ')
+		msg += u'name: {} \ntelephon: {} \nemail: {} \ncomment: "{}" \n'.format(client_name, client_telephon, client_email, client_comment)
+		msg += '+'*50;
+		msg += "\nClients request: \n"
+		msg += '+'*50;
+		for item in items:
+			msg += u'\n{name_of_item} \ncount: {count}\n'.format(**item)
+			msg += '-'*50
+		with codecs.open("log.txt",'w', encoding="utf-8") as f:
+			f.write(msg)
+		return render_template('equipments.html')
+
+
+
 
 @app.route('/certificates')
 def certificates():

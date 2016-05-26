@@ -29,11 +29,11 @@
 	</div>
 <div class="row second">
 	<div class="col-sm-3 user-form">
-		<form class="form" role="form">
+		<form id="form" role="form">
 			<div class="form-group">
 				<div class="form-group has-feedback">
 					<label for="client_name">Ваше имя</label>
-					<input type="Text" class="form-control" id="client_name" placeholder="Ваше имя">
+					<input type="text" class="form-control" id="client_name" placeholder="Ваше имя">
 					<span class="glyphicon form-control-feedback"></span>
 				</div>
 			</div>
@@ -65,17 +65,12 @@
 				<label for="client_name">Ваш комментарий</label>
 				<textarea class="form-control" rows="3"></textarea>
 			</div>
-			<button type="button" class="btn btn-default">Отправить заявку</button>
+			<button type="button" class="btn btn-default submit-button">Отправить заявку</button>
  		</form>
 	</div>
 	<div class="col-sm-9">
 		<label>Выбранные товары</label>
 		<ul class="client-cart list-group">
-			<li class="list-group-item">
-				<span class="glyphicon glyphicon-remove-circle remove-item"></span>
-				<span class="count">5 шт.</span>
-				<span class="name-item">FC пигтейл (Шнур монтажный) SM 1,5м FC пигтейл (Шнур монтажный) SM 1,5м</span>
-			</li>
 			<li class="list-group-item">
 				<span class="total-count">0.00 рублей</span>
 				<strong>Общая сумма заявки</strong>

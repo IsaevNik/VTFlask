@@ -48,7 +48,7 @@ var main = function(){
  		
  		var total_coast_of_item = Number(item_count) * Number(item_coast);
 
- 		var newItem = $('<li class="list-group-item"></li')
+ 		var newItem = $('<li class="list-group-item item-of-cart"></li>')
         .append('<span class="glyphicon glyphicon-remove-circle remove-item"></span>')
         .append($('<span/>',{
         	"class" : "count",
