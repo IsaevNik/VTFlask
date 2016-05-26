@@ -164,11 +164,10 @@ main.container {
 }
 
 #main_page .well {
-	box-shadow: 0 0 10px #777;
 	background-color: rgba(156, 156, 156, 0.4);
+	box-shadow: 0 0 10px #78F6D9;
 }
 .content p {
-	text-align: justify;
 	text-indent: 40px;
 }
 .content a {

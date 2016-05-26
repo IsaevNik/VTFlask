@@ -27,7 +27,7 @@ var main = function(){
  		$(this).parent().removeClass("has-error");
  	
  	});
- 	$('#client_name').blur(function(){
+ 	$('#client_name').blur(function(){  //Валидация имени
  		var name = $(this).val();
  		if (name.match(name_pattern) != null){
  			$(this).parent().addClass("has-success");
@@ -38,19 +38,19 @@ var main = function(){
  		}
  	});
  	
- 	$('#client_telephone').blur(function(){
- 		var telephon = $(this).val();
- 		if (telephon.match(telephon_pattern)!=null){
- 			$(this).parent().addClass("has-success");
- 			$(this).next().addClass("glyphicon-ok");
+ 	$('#client_telephone').blur(function(){ //Валидация телефона
+ 		var telephon = $( this ).val();
+ 		if ( telephon.match( telephon_pattern ) != null ){
+ 			$( this ).parent().addClass("has-success");
+ 			$( this ).next().addClass("glyphicon-ok");
  		} else {
- 			$(this).parent().addClass("has-error");
- 			$(this).next().addClass("glyphicon-remove");
+ 			$( this ).parent().addClass( "has-error" );
+ 			$( this ).next().addClass( "glyphicon-remove" );
  		}
  	});
- 	$('#client_email').blur(function(){
+ 	$('#client_email').blur(function(){ //Валидация адреса электронной почты
  		var mail = $(this).val();
- 		if (mail.match(mail_pattern)!=null){
+ 		if ( mail.match( mail_pattern ) != null ){
  			$(this).parent().addClass("has-success");
  			$(this).next().addClass("glyphicon-ok");
  		} else {
@@ -59,15 +59,28 @@ var main = function(){
  		}
  	});
  	
- 	$('.user-form').focusin(function(){
+ 	$('.user-form').focusin(function(){ 
  		$(this).toggleClass("focus-form");
  	});
  	$('.user-form').focusout(function(){
  		$(this).toggleClass("focus-form");
  	});
 
- 	$('.client-cart').on('click','.remove-item',function(){
- 		alert("1");
+ 	$('.client-cart').on('click','.remove-item',function(){ //Удаление строки из корзины 
+ 		var sum_in_user_cart = parseFloat($('.total-count').text());
+ 		var item_count = parseInt($(this).next().text().split('x')[0]);
+ 		var item_coast = parseFloat($(this).next().text().split('x')[1]);
+
+ 		var total_coast_of_item = item_count * item_coast;
+ 		sum_in_user_cart = sum_in_user_cart - total_coast_of_item;
+
+ 		if ((sum_in_user_cart ^ 0) === sum_in_user_cart){
+ 				sum_in_user_cart = sum_in_user_cart + ".00 руб.";
+ 			} else {
+ 				sum_in_user_cart = parseFloat(sum_in_user_cart.toFixed(2))
+ 				sum_in_user_cart = sum_in_user_cart + " руб.";
+ 			}
+ 		$('.total-count').text(sum_in_user_cart);
  		$(this).parent('.list-group-item').remove();
  	});
 }
