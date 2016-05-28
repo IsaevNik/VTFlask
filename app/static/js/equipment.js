@@ -112,6 +112,9 @@ var main = function(){
 
 
  	function reset_form() {
+ 		$('.sublevel').load('/passivnieComponentiVols');
+ 		$('.levels li.active').removeClass('active');
+ 		$('.levels li:first-child').addClass('active');
  		$('.item-of-cart').remove();
  		$('.total-count').text("0.00 руб.");
  		$('#form')[0].reset();
@@ -169,7 +172,7 @@ var main = function(){
  		var email_input = $("#client_email");
  		
  		if ($('.client-cart').children().length == 1){ //если карзина пуста предупреждение
- 			;
+ 			$('.client-cart').after(warningMessage);
  			return false;
  		}
  		if($(".show_email").prop("checked")) { 

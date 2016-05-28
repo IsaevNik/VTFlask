@@ -2,9 +2,11 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 from app import app
 import sqlite3 as sql
+import os
 import codecs
 
-DATABASE_NAME = 'shop.db'
+base_dir = os.path.abspath(os.path.dirname(__file__))
+DATABASE_NAME = os.path.join(base_dir,'shop.db')
 
 def get_table(name):
 	result = {}
@@ -35,7 +37,6 @@ def our_clients():
 def services():
 	return render_template('services.html')
 
-
 @app.route('/equipments', methods=['GET','POST'])
 def equipments():
 	if request.method == 'GET':
@@ -58,9 +59,6 @@ def equipments():
 		with codecs.open("log.txt",'w', encoding="utf-8") as f:
 			f.write(msg)
 		return '/equipments'
-
-
-
 
 @app.route('/certificates')
 def certificates():
