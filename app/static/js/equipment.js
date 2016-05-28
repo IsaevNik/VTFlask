@@ -15,10 +15,7 @@ var main = function(){
     function errorMessage(text_str, text_sm){
     	var errorElement = $('<div class="alert alert-danger"></div>')
         .append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')
-        .append('<strong/>', {
-        	text: text_str
-        })
-        .append(text_sm);
+        .append('<strong>'+text_str+'</strong>'+text_sm);
 
         return errorElement;
     }
@@ -115,7 +112,6 @@ var main = function(){
 
 
  	function reset_form() {
- 		$('.user-form').removeClass('focus-form');
  		$('.item-of-cart').remove();
  		$('.total-count').text("0.00 руб.");
  		$('#form')[0].reset();
@@ -143,56 +139,49 @@ var main = function(){
  			item_for_send['count'] = parseInt($(this).children('.count').text().split('x')[0]);
  			data_of_request['items'].push(item_for_send);
  		});
-
- 		$('.user-form').removeClass('focus-form');
- 		$('.item-of-cart').remove();
- 		$('.total-count').text("0.00 руб.");
- 		$('#client_name').val("");
- 		$('#client_telephone').val("");
- 		$('#client_email').val("");
- 		$('#client_comment').val("");
  		
- 		reset_form();
+ 		
 
  		$.ajax({
  			url: '/equipments',
  			type: 'POST',
- 			contentType: "application/json; charset=utf-8",
-  			dataType: 'json',			
+ 			contentType: "application/json; charset=utf-8",			
  			data: JSON.stringify(data_of_request),
  			
  			success: function(response) {
- 				console.log(resp);
+ 				//$('.content').load(response);
+ 				$('.client-cart').after(successMessage);
+ 				reset_form();
  			},
  			error: function(error) {
- 				/*$('.client-cart').after(errorMessage("Ошибка на сервере!","Мы не можем обработать ваш запрос"));*/
+ 				$('.client-cart').after(errorMessage("Ошибка на сервере!","Мы не можем обработать ваш запрос"));
  			}
  		});
  		
  	};
 
  	$('.submit-button').on('click',function(){
- 		$(this).parents(".user-form").removeClass("focus-form");
+ 		
  		$('.alert').remove();
 
  		var telephon_input = $("#client_telephone");
  		var name_input = $("#client_name");
  		var email_input = $("#client_email");
-
+ 		
  		if ($('.client-cart').children().length == 1){ //если карзина пуста предупреждение
- 			$('.client-cart').after(warningMessage);
+ 			;
  			return false;
  		}
  		if($(".show_email").prop("checked")) { 
  			if (is_valid(telephon_input) && is_valid(name_input) && is_valid(email_input)){ //валидация формы с почтой
- 				$('.client-cart').after(successMessage);
+ 				;
  			} else {
  				$('.client-cart').after(errorMessage("Ошибка!","Проверьте корректность данных"));
  				return false;
  			}
  		} else {
  			if (is_valid(telephon_input) && is_valid(name_input)) { //валидация формы без почты
- 				$('.client-cart').after(successMessage);
+ 				;
  			} else {
  				$('.client-cart').after(errorMessage("Ошибка!","Проверьте корректность данных"));
  				return false;

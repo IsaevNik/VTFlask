@@ -36,9 +36,6 @@ def services():
 	return render_template('services.html')
 
 
-
-
-
 @app.route('/equipments', methods=['GET','POST'])
 def equipments():
 	if request.method == 'GET':
@@ -60,7 +57,7 @@ def equipments():
 			msg += '-'*50
 		with codecs.open("log.txt",'w', encoding="utf-8") as f:
 			f.write(msg)
-		return render_template('equipments.html')
+		return '/equipments'
 
 
 
