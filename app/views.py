@@ -1,10 +1,21 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask.ext.mail import Mail, Message
 import json
 from app import app
 import sqlite3 as sql
 import os
 import codecs
 
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'isv.nikita@gmail.com'
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_SENDER'] = 'VOLStelecom shop <volstelecomshop@gmail.com>'
+app.config['MAIL_MANAGER'] = 'kooperative@mail.ru'
+
+
+mail = Mail(app)
 base_dir = os.path.abspath(os.path.dirname(__file__))
 DATABASE_NAME = os.path.join(base_dir,'shop.db')
 
@@ -19,6 +30,11 @@ def get_table(name):
 			items = [{'id':item[0],'name':item[1],'price':item[2],'img':item[3]} for item in cur.fetchall()]
 			result[k] = items
 	return result
+
+def send_message(to, subject, body):
+	msg = Message(subject, sender=app.config['MAIL_SENDER'], recipients=[to])
+	msg.body = body
+	mail.send(msg)
 
 @app.route('/')
 def index():
@@ -49,15 +65,14 @@ def equipments():
 		client_comment = data["client_comment"]
 		items = data["items"]
 		msg = u'{:+^50}\n'.format(' New request ')
-		msg += u'name: {} \ntelephon: {} \nemail: {} \ncomment: "{}" \n'.format(client_name, client_telephon, client_email, client_comment)
+		msg += u'name: {} \ntelephone: {} \nemail: {} \ncomment: "{}" \n'.format(client_name, client_telephon, client_email, client_comment)
 		msg += '+'*50;
 		msg += "\nClients request: \n"
 		msg += '+'*50;
 		for item in items:
 			msg += u'\n{name_of_item} \ncount: {count}\n'.format(**item)
 			msg += '-'*50
-		with codecs.open("log.txt",'w', encoding="utf-8") as f:
-			f.write(msg)
+		send_message(app.config['MAIL_MANAGER'], "new request", msg)
 		return '/equipments'
 
 @app.route('/certificates')
