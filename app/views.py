@@ -1,27 +1,14 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
-from flask.ext.mail import Mail, Message
 import json
 from app import app
 import sqlite3 as sql
 import os
 import codecs
-
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'isv.nikita@gmail.com'
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_SENDER'] = 'VOLStelecom shop <volstelecomshop@gmail.com>'
-app.config['MAIL_MANAGER'] = 'kooperative@mail.ru'
-
-
-mail = Mail(app)
-base_dir = os.path.abspath(os.path.dirname(__file__))
-DATABASE_NAME = os.path.join(base_dir,'shop.db')
+from emails import send_message
 
 def get_table(name):
 	result = {}
-	with sql.connect(DATABASE_NAME) as con:
+	with sql.connect(app.config['DATABASE_NAME']) as con:
 		cur = con.cursor()
 		cur.execute('SELECT DISTINCT type FROM {}'.format(name))
 		result = {res[0]:[] for res in cur.fetchall()}
@@ -31,10 +18,21 @@ def get_table(name):
 			result[k] = items
 	return result
 
-def send_message(to, subject, body):
-	msg = Message(subject, sender=app.config['MAIL_SENDER'], recipients=[to])
-	msg.body = body
-	mail.send(msg)
+def make_message(data):
+	client_name = data["client_name"]
+	client_telephon = data["client_telephon"]
+	client_email = data["client_email"]
+	client_comment = data["client_comment"]
+	items = data["items"]
+	msg = u'{:+^50}\n'.format(' New request ')
+	msg += u'name: {} \ntelephone: {} \nemail: {} \ncomment: "{}" \n'.format(client_name, client_telephon, client_email, client_comment)
+	msg += '+'*50;
+	msg += "\nClients request: \n"
+	msg += '+'*50;
+	for item in items:
+		msg += u'\n{name_of_item} \ncount: {count}\n'.format(**item)
+		msg += '-'*50
+	return msg
 
 @app.route('/')
 def index():
@@ -59,19 +57,7 @@ def equipments():
 		return render_template('equipments.html')
 	else:
 		data = request.get_json()
-		client_name = data["client_name"]
-		client_telephon = data["client_telephon"]
-		client_email = data["client_email"]
-		client_comment = data["client_comment"]
-		items = data["items"]
-		msg = u'{:+^50}\n'.format(' New request ')
-		msg += u'name: {} \ntelephone: {} \nemail: {} \ncomment: "{}" \n'.format(client_name, client_telephon, client_email, client_comment)
-		msg += '+'*50;
-		msg += "\nClients request: \n"
-		msg += '+'*50;
-		for item in items:
-			msg += u'\n{name_of_item} \ncount: {count}\n'.format(**item)
-			msg += '-'*50
+		msg = make_message(data)
 		send_message(app.config['MAIL_MANAGER'], "new request", msg)
 		return '/equipments'
 

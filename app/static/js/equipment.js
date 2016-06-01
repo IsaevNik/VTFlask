@@ -113,6 +113,12 @@ var main = function(){
 
  	function reset_form() {
  		$('.sublevel').load('/passivnieComponentiVols');
+ 		if($(".show_email").is(':checked')) {
+ 			$('.email').slideToggle('fast');
+ 		}
+ 		if($(".show_comment").is(':checked')) {
+ 			$('.comment').slideToggle('fast');
+ 		}
  		$('.levels li.active').removeClass('active');
  		$('.levels li:first-child').addClass('active');
  		$('.item-of-cart').remove();
