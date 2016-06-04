@@ -339,9 +339,8 @@ main.container {
 	margin: 0;
 }
 .levels li {
-	line-height: 40px;
 	text-align: center;
-	padding: 0 15px;
+	padding: 5px 0;
  	border-bottom: 1px #666 solid;
 }
 .levels li:last-child {
@@ -349,11 +348,12 @@ main.container {
  }
 .levels li > a{
 	text-decoration: none;
+	padding: 0 15px;
 	font-size: 16px;
 	height: 100%;
 	color: #322f2f;
-	display: inline-block;
-	line-height: 24px;
+	display: block;
+	line-height: 20px;
 	vertical-align: middle;
 }
 .levels li:hover{
@@ -417,8 +417,20 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	box-shadow: none;
 }
 
-.description {
+.item_name {
 	padding-top: 5px;
+}
+.item_name > p{
+	margin-bottom: 5px;
+}
+#show-description, #hide-description {
+	color: #41C695;
+	font-size: 14px; 
+	cursor: pointer;
+}
+
+.description-text, #hide-description {
+	display: none;
 }
 
 .input-group-addon{
@@ -570,8 +582,6 @@ textarea {
 	}
 	.levels li {
 		line-height: 20px;
- 		padding-top: 5px; 
- 		padding-bottom: 5px;
   	}
 		
 }
@@ -644,8 +654,6 @@ textarea {
 	.levels li {
 		line-height: 42px;
 		margin-bottom: 0;
-		padding-top: 0px; 
- 		padding-bottom: 0px;
 	}
 
 }

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
-import sqlite3 as sql
 import os
 import codecs
 
@@ -24,7 +23,8 @@ def get_level(name):
 					.order_by(Shop.name)
 					.where(Shop.sublevel == sublevel_name)):
 
-			item = ({'name' : line.name, 'price' : line.price,
+			item = ({'name' : line.name, 
+					 'price' : line.price,
 					 'img' : 'shop/foto/' + str(line.foto) + '.jpg', 
 					 'description' : line.description})
 			result[sublevel_name].append(item)

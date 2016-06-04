@@ -5,6 +5,18 @@ var main = function(){
 		$('.collapse',parent).collapse('toggle');
 		$('.panel-title a',this).toggleClass('active');
 	});
+
+	$('.description').on('click','#show-description', function(){
+		$(this).hide();
+		$(this).next().show();
+		$(this).prev().slideToggle('fast');
+	});
+	$('.description').on('click','#hide-description', function(){
+		$(this).hide();
+		$(this).prev().show();
+		$(this).prev().prev().slideToggle('fast');
+	});
+
 	$( ".input-group-addon" ).on('mousedown',function() {
 		$(this).addClass( "click" );
 	});
