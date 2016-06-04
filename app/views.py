@@ -1,21 +1,34 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
-from app import app
 import sqlite3 as sql
 import os
 import codecs
-from emails import send_message
 
-def get_table(name):
+from models import Shop
+from emails import send_message
+from app import app
+
+def get_level(name):
 	result = {}
-	with sql.connect(app.config['DATABASE_NAME']) as con:
-		cur = con.cursor()
-		cur.execute('SELECT DISTINCT type FROM {}'.format(name))
-		result = {res[0]:[] for res in cur.fetchall()}
-		for k in result.keys():
-			cur.execute('SELECT * FROM {} WHERE type = ?'.format(name),(k,))
-			items = [{'id':item[0],'name':item[1],'price':item[2],'img':item[3]} for item in cur.fetchall()]
-			result[k] = items
+	for sublvl in (Shop
+				.select(Shop.sublevel)
+				.distinct()
+				.order_by(Shop.sublevel)
+				.where(Shop.level == name)):
+		sublevel_name = sublvl.sublevel
+		result[sublevel_name] = []
+
+		for line in (Shop
+					.select()
+					.order_by(Shop.name)
+					.where(Shop.sublevel == sublevel_name)):
+
+			item = ({'name' : line.name, 'price' : line.price,
+					 'img' : 'shop/foto/' + str(line.foto) + '.jpg', 
+					 'description' : line.description})
+			result[sublevel_name].append(item)
+
 	return result
 
 def make_message(data):
@@ -75,66 +88,15 @@ def page_not_found(e):
 
 @app.route('/passivnieComponentiVols')
 def passivnieComponentiVols():
-	level = get_table('PassivnyeKomponentyVols')
+	level = get_level('Пассивные компоненты ВОЛС')
 	return render_template('level_base.html', level=level)
 
-@app.route('/krossOpticheskiy')
-def krossOpticheskiy():
-	level = get_table('KrossOpticheskiy')
+@app.route('/electrica')
+def electrica():
+	level = get_level('Электрика')
 	return render_template('level_base.html', level=level)
 
-@app.route('/muftaOpticheskaya')
-def muftaOpticheskaya():
-	level = get_table('MuftaOpticheskaya')
-	return render_template('level_base.html', level=level)
-
-@app.route('/instrumentDlyaRazdelkiVols')
-def instrumentDlyaRazdelkiVols():
-	level = get_table('InstrumentDlyaRazdelkiVols')
-	return render_template('level_base.html', level=level)
-
-@app.route('/diagnostikaVols')
-def diagnostikaVols():
-	level = get_table('DiagnostikaVols')
-	return render_template('level_base.html', level=level)
-
-@app.route('/svarochnyeApparaty')
-def svarochnyeApparaty():
-	level = get_table('SvarochnyeApparaty')
-	return render_template('level_base.html', level=level)
-
-@app.route('/reflektometrOpticheskiy')
-def reflektometrOpticheskiy():
-	level = get_table('ReflektometrOpticheskiy')
-	return render_template('level_base.html', level=level)
-
-@app.route('/rashodnyeMaterialy')
-def rashodnyeMaterialy():
-	level = get_table('RashodnyeMaterialy')
-	return render_template('level_base.html', level=level)
-
-@app.route('/dopolnitelnoeOborudovanie')
-def dopolnitelnoeOborudovanie():
-	level = get_table('DopolnitelnoeOborudovanie')
-	return render_template('level_base.html', level=level)
-
-@app.route('/patchKordyOpticheskie')
-def patchKordyOpticheskie():
-	level = get_table('PatchKordyOpticheskie')
-	level.pop(u'%u041F%u0430%u0442%u0447%20%u043A%u043E%u0440%u0434%u044B%20%u043E%u043F%u0442%u0438%u0447%u0435%u0441%u043A%u0438%u0435', None)
-	return render_template('level_base.html', level=level)
-
-@app.route('/shkafyIStoiki')
-def shkafyIStoiki():
-	level = get_table('ShkafyIStoiki')
-	return render_template('level_base.html', level=level)
-
-@app.route('/opticheskieKonnektory')
-def opticheskieKonnektory():
-	level = get_table('OpticheskieKonnektory')
-	return render_template('level_base.html', level=level)
-
-@app.route('/kabelnyeSborki')
-def kabelnyeSborki():
-	level = get_table('KabelnyeSborki')
+@app.route('/montagiIzmereniya')
+def montagiIzmereniya():
+	level = get_level('Монтаж и измерения оптических линий связи')
 	return render_template('level_base.html', level=level)

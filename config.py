@@ -3,7 +3,7 @@ import os
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
 
-DATABASE_NAME = os.path.join(base_dir,'shop.db')
+DATABASE_NAME = 'movedb'
 
 MAIL_SERVER = 'smtp.volstelecom.ru'
 MAIL_PORT = 25
