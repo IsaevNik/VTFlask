@@ -5,7 +5,7 @@ var main = function(){
 		$('.collapse',parent).collapse('toggle');
 		$('.panel-title a',this).toggleClass('active');
 	});
-
+	
 	$('.description').on('click','#show-description', function(){
 		$(this).hide();
 		$(this).next().show();

@@ -3,18 +3,21 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import json
 import os
 import codecs
+from collections import OrderedDict
 
 from models import Shop
 from emails import send_message
 from app import app
+from config import base_dir
 
 def get_level(name):
-	result = {}
+	result = OrderedDict({})
 	for sublvl in (Shop
 				.select(Shop.sublevel)
 				.distinct()
 				.order_by(Shop.sublevel)
 				.where(Shop.level == name)):
+
 		sublevel_name = sublvl.sublevel
 		result[sublevel_name] = []
 
@@ -24,9 +27,12 @@ def get_level(name):
 					.where(Shop.sublevel == sublevel_name)):
 
 			item = ({'name' : line.name, 
-					 'price' : line.price,
+					 'price' : line.price / 1.00,
 					 'img' : 'shop/foto/' + str(line.foto) + '.jpg', 
 					 'description' : line.description})
+			img_path = os.path.join(base_dir,'app', 'static', 'shop', 'foto', str(line.foto) + '.jpg')
+			if not os.path.exists(img_path):
+				item['img'] = 'shop/foto/0000.jpg'
 			result[sublevel_name].append(item)
 
 	return result
