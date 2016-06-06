@@ -6,6 +6,7 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 DATABASE_NAME = 'movedb'
 DEBUG = True
 
+
 MAIL_SERVER = 'smtp.volstelecom.ru'
 MAIL_PORT = 25
 MAIL_USE_TLS = True
