@@ -326,17 +326,19 @@ main.container {
 .first {
 	margin-bottom: 10px;
 }
-.aside {
-	border-right: 2px solid #777;
-  	border-bottom: 2px solid #777;
- 	background: rgba(255, 255, 255, 0.4);
- 	box-shadow: 0 0 5px #322f2f;
- 	padding: 0;
+.aside .input-group{
+	padding: 2px 0 0 0;
+	margin-bottom: 5px;
 }
 .levels {
 	list-style-type: none;
 	padding-left: 0;
 	margin: 0;
+	border-right: 2px solid #777;
+  	border-bottom: 2px solid #777;
+ 	background: rgba(255, 255, 255, 0.4);
+ 	box-shadow: 0 0 5px #322f2f;
+ 	padding: 0;
 }
 .levels li {
 	text-align: center;
@@ -389,6 +391,11 @@ main.container {
 }
 .panel-body p {
 	text-indent: 0;
+}
+
+#not-found {
+	margin-left: 20px;
+	
 }
 
 .panel-body .input-group {

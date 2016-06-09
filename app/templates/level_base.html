@@ -1,65 +1,86 @@
 <div class="panel-group" id="accordion">
-	{% for sublevel,items in level.items() %}
-		<div class="panel panel-default panel-transparent">
+
+    {% if level.get('not found') %}
+    	<div class="panel panel-default panel-transparent">
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#">
-						{{ sublevel }}
+						Результат поиска
 					</a>
 				</h4>
 			</div>
 			<div class="panel-collapse collapse">
 				<div class="panel-body">
-					{%for item in items%}
 						<div class="row">
-							<div class="col-sm-2">
-								<img src="{{ url_for('static', filename = item['img'])}}" alt="{{ item['name'] }}" class="img-responsive center-block"></img>
-							</div>
-							<div class="col-sm-5 col-md-6 item_name">
-								<p class="text-left">{{ item['name'] }}</p>
-								{% if item['description'] != None %}
-									<div class="description">
-										<span class="description-text">{{ item['description'] }} </span>
-										<span id="show-description">Подробнее...</span>
-										<span id="hide-description">Скрыть</span>
-									</div>
-								{% endif %}
-							</div>
-							{% if item['price'] != 0.0 %}
-								<div class="col-sm-3 col-md-2 counter"> 
-	 								<div class="row"> 
-	 									<div class="col-sm-8 input-group"> 
-	 										<span class="input-group-addon up">&#9650;</span> 
-	 										<input type="number" class="form-control" value="1"/>
-	 										<span class="input-group-addon down">&#9660;</span> 
-	 									</div> 
-	 									<div class="col-sm-4"> 
-	 										<i class="material-icons  shoping-cart" title="Добавить в корзину">shopping_cart</i> 
-	 									</div> 
-	 								</div>
-	 							</div>
-								<div class="col-sm-2">
-									<div class="row price">
-										<div class="item-coast col-md-7 col-md-offset-2 col-sm-7 col-md-offset-1">
-											<p><b>{{ item['price'] }}</b></p>
-										</div>
-										<div class="col-md-3 col-sm-4">
-											<img src="static/shop/rub.png" class="img-responsive hidden-sm">
-											<img src="static/shop/rub_sm.png" class="img-responsive visible-sm">
-										</div>
-									</div>
-								</div>
-							{% else %}
-								<div class="col-sm-4 price-manager">
-									<p> Уточните цену у менеджера </p>
-								</div>
-							{%endif%}
+							<h4 id="not-found"> К сожалению по вашему запросу ничего не найдено </h4>
 						</div>
-					{%endfor%}	
 				</div>
 			</div>
 		</div>
-	{%endfor%}
+    {% else %}
+		{% for sublevel,items in level.items() %}
+			<div class="panel panel-default panel-transparent">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#">
+							{{ sublevel }}
+						</a>
+					</h4>
+				</div>
+				<div class="panel-collapse collapse">
+					<div class="panel-body">
+						{%for item in items%}
+							<div class="row">
+								<div class="col-sm-2">
+									<img src="{{ url_for('static', filename = item['img'])}}" alt="{{ item['name'] }}" class="img-responsive center-block"></img>
+								</div>
+								<div class="col-sm-5 col-md-6 item_name">
+									<p class="text-left">{{ item['name'] }}</p>
+									{% if item['description'] != None %}
+										<div class="description">
+											<span class="description-text"><i> {{ item['description'] }} </i></span>
+											<span id="show-description">Подробнее...</span>
+											<span id="hide-description">Скрыть</span>
+										</div>
+									{% endif %}
+								</div>
+								{% if item['price'] != 0.0 %}
+									<div class="col-sm-3 col-md-2 counter"> 
+		 								<div class="row"> 
+		 									<div class="col-sm-8 input-group"> 
+		 										<span class="input-group-addon up">&#9650;</span> 
+		 										<input type="number" class="form-control" value="1"/>
+		 										<span class="input-group-addon down">&#9660;</span> 
+		 									</div> 
+		 									<div class="col-sm-4"> 
+		 										<i class="material-icons  shoping-cart" title="Добавить в корзину">shopping_cart</i> 
+		 									</div> 
+		 								</div>
+		 							</div>
+									<div class="col-sm-2">
+										<div class="row price">
+											<div class="item-coast col-md-7 col-md-offset-2 col-sm-7 col-md-offset-1">
+												<p><b>{{ item['price'] }}</b></p>
+											</div>
+											<div class="col-md-3 col-sm-4">
+												<img src="static/shop/rub.png" class="img-responsive hidden-sm">
+												<img src="static/shop/rub_sm.png" class="img-responsive visible-sm">
+											</div>
+										</div>
+									</div>
+								{% else %}
+									<div class="col-sm-4 price-manager">
+										<p> Уточните цену у менеджера </p>
+									</div>
+								{%endif%}
+							</div>
+						{%endfor%}	
+					</div>
+				</div>
+			</div>
+		{%endfor%}
+	{%endif%}
+</div>
 <script>
 	$.getScript('static/js/sublevel.js');
 </script>

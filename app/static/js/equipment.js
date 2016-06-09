@@ -1,6 +1,6 @@
 var main = function(){
 	
-	$(".sublevel").load("/passivnieComponentiVols");
+	$(".sublevel").load("/level1");
 	var telephon_pattern = /^(\+?\d{1}\(?\d{3}\)?\d{3}-?\d{2}-?\d{2})$/;
  	var name_pattern = /^([а-яА-Я ]+)$/;
  	var mail_pattern = /^[\w-\.]+@[\w-]+\.[a-z]{2,3}$/;
@@ -158,7 +158,6 @@ var main = function(){
  			data: JSON.stringify(data_of_request),
  			
  			success: function(response) {
- 				//$('.content').load(response);
  				$('.client-cart').after(successMessage);
  				reset_form();
  			},
@@ -168,6 +167,30 @@ var main = function(){
  		});
  		
  	};
+
+ 	$('.search span').on('click', function(){
+ 		var userSearchRequest = {};
+
+ 		var textOfRequest = $(this).next().val();
+ 		if (textOfRequest != ''){
+ 			$(".levels li.active").toggleClass("active");
+ 			userSearchRequest['text'] = textOfRequest;
+ 			$.ajax({
+	 			url: '/search',
+	 			type: 'POST',
+	 			contentType: "application/json; charset=utf-8",			
+	 			data: JSON.stringify(userSearchRequest),
+ 				dataType: "html",
+	 			success: function(response) {
+	 				$(".sublevel").html(response);
+	 				$('.collapse').toggle();
+	 			},
+	 			error: function(error) {
+	 				$('.sublevel').append(errorMessage("Ошибка на сервере!","Мы не можем обработать ваш запрос"));
+	 			}
+ 			});
+ 		}
+ 	});
 
  	$('.submit-button').on('click',function(){
  		
