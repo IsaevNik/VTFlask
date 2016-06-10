@@ -117,47 +117,47 @@ def page_not_found(e):
 
 @app.route('/level1')
 def level1():
-	level = get_level('Электротовары')
+	level = get_level('Сварочные аппараты ВОЛС')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level2')
 def level2():
-	level = get_level('Сварочные аппараты ВОЛС')
+	level = get_level('Измерительные приборы')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level3')
 def level3():
-	level = get_level('Патч-корды')
+	level = get_level('Техническое обслуживание и ремонт приборов')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level4')
 def level4():
-	level = get_level('Измерительные приборы')
+	level = get_level('Кроссовое оборудование')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level5')
 def level5():
-	level = get_level('Материалы для производства патч-кордов')
+	level = get_level('Пигтейлы оптические')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level6')
 def level6():
-	level = get_level('Расходные материалы и инструмент')
+	level = get_level('Розетки оптические')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level7')
 def level7():
-	level = get_level('Кроссовое оборудование')
+	level = get_level('Патч-корды')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level8')
 def level8():
-	level = get_level('Муфты для кабелей связи')
+	level = get_level('Материалы для производства патч-кордов')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level9')
 def level9():
-	level = get_level('Розетки оптические')
+	level = get_level('Расходные материалы и инструмент')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level10')
@@ -167,22 +167,42 @@ def level10():
 
 @app.route('/level11')
 def level11():
-	level = get_level('Пигтейлы оптические')
+	level = get_level('Разветвители оптические')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level12')
 def level12():
-	level = get_level('Шкафы и стойки')
+	level = get_level('Кабели связи')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level13')
 def level13():
-	level = get_level('Пассивные компоненты ВОЛС')
+	level = get_level('Кабельная арматура')
 	return render_template('level_base.html', level=level)
 
 @app.route('/level14')
 def level14():
-	level = get_level('Монтаж и измерения оптических линий связи')
+	level = get_level('Муфты для кабелей связи')
+	return render_template('level_base.html', level=level)
+
+@app.route('/level15')
+def level15():
+	level = get_level('Материалы для распределительных сетей')
+	return render_template('level_base.html', level=level)
+
+@app.route('/level16')
+def level16():
+	level = get_level('Линейные сооружения связи')
+	return render_template('level_base.html', level=level)
+
+@app.route('/level17')
+def level17():
+	level = get_level('Шкафы и стойки')
+	return render_template('level_base.html', level=level)
+
+@app.route('/level18')
+def level18():
+	level = get_level('Оборудование связи')
 	return render_template('level_base.html', level=level)
 
 @app.route('/search', methods=['POST'])

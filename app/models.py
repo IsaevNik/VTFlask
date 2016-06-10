@@ -15,9 +15,10 @@ class Shop(BaseModel):
     description = TextField(db_column='описание', null=True)
     foto = IntegerField(db_column='фото_номер', index=True)
     level = CharField(db_column='раздел', null=True)
-    name = CharField(db_column='Наименование', null=True, primary_key=True)
+    name = CharField(db_column='Наименование', null=True)
     price = FloatField(db_column='цена_на_сайте_с_ндс', null=True)
     sublevel = CharField(db_column='Подраздел', null=True)
+    calculator = CharField(db_column='калькулятор', null=True)
 
     class Meta:
         db_table = 'shop'

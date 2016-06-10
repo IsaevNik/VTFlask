@@ -13,6 +13,6 @@ MAIL_USE_TLS = True
 MAIL_USERNAME = 'shop@volstelecom.ru'
 MAIL_PASSWORD = 'j8njeRca'
 MAIL_SENDER = 'VOLStelecom shop <shop@volstelecom.ru>'
-MAIL_MANAGER = 'kooperative@mail.ru'
+MAIL_MANAGER = 'dkurkov@volstelecom.ru'
 #MAIL_MANAGER = 'elukashin@volstelecom.ru'
 #MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
