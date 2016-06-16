@@ -5,11 +5,13 @@ import os
 import codecs
 from collections import OrderedDict
 from peewee import DoesNotExist
+import re
 
 from models import Shop
 from emails import send_message
 from app import app
 from config import base_dir
+
 
 def get_level(name):
 	result = OrderedDict({})
@@ -31,12 +33,18 @@ def get_level(name):
 					 'price' : line.price,
 					 'img' : 'shop/foto/' + str(line.foto) + '.jpg', 
 					 'description' : line.description})
-			img_path = os.path.join(base_dir,'app', 'static', 'shop', 'foto', str(line.foto) + '.jpg')
+			img_path = os.path.join(base_dir,
+									'app', 
+									'static', 
+									'shop', 
+									'foto', 
+									str(line.foto) + '.jpg')
 			if not os.path.exists(img_path):
 				item['img'] = 'shop/foto/0000.jpg'
 			result[sublevel_name].append(item)
 
 	return result
+
 
 def search_on_db(text):
 	result = {}
@@ -50,11 +58,18 @@ def search_on_db(text):
 			item = ({'name' : line.name, 'price' : line.price,
 					 'img' : 'shop/foto/' + str(line.foto) + '.jpg', 
 					 'description' : line.description})
-			img_path = os.path.join(base_dir,'app', 'static', 'shop', 'foto', str(line.foto) + '.jpg')
+			img_path = os.path.join(base_dir,
+									'app', 
+									'static', 
+									'shop', 
+									'foto', 
+									str(line.foto) + '.jpg')
+
 			if not os.path.exists(img_path):
 				item['img'] = 'shop/foto/0000.jpg'
 			result[u'Результат поиска'].append(item)
 	return result
+
 
 def make_message(data):
 	client_name = data["client_name"]
@@ -63,7 +78,11 @@ def make_message(data):
 	client_comment = data["client_comment"]
 	items = data["items"]
 	msg = u'{:+^50}\n'.format(' New request ')
-	msg += u'name: {} \ntelephone: {} \nemail: {} \ncomment: "{}" \n'.format(client_name, client_telephon, client_email, client_comment)
+	msg += u'name: {} \ntelephone: {} \nemail: {} \ncomment: "{}" \n'.format(
+												client_name, 
+												client_telephon, 
+												client_email, 
+												client_comment)
 	msg += '+'*50;
 	msg += "\nClients request: \n"
 	msg += '+'*50;
@@ -71,6 +90,55 @@ def make_message(data):
 		msg += u'\n{name_of_item} \ncount: {count}\n'.format(**item)
 		msg += '-'*50
 	return msg
+
+
+def get_name(name):
+	if name.startswith(u'Коннектор'):
+		result = re.search(r' (.*)-[SM]M', name)
+		return result.groups()[0]
+	else:
+		return ' '.join(name.split()[5:-1])
+
+
+def get_data_for_calculator():
+	list_of_types = {name.calculator : [] for name in (Shop
+											   .select(Shop.calculator)
+											   .distinct()
+											   .where(Shop.calculator.is_null(False)))}
+	for item in list_of_types.keys():
+		list_of_types[item] = [{'name': get_name(product.name), 
+								'price': product.price} 
+									for product in (Shop
+												   .select(Shop.name, Shop.price)
+												   .where(Shop.calculator == item))]
+	return list_of_types
+
+
+def get_price_of_component(name):
+	try:
+		line = Shop.get(Shop.name.contains(name))
+	except DoesNotExist:
+		abort(500)
+	else:
+		return line.price
+
+
+def get_price_of_patch(cab_len, con_l, con_r, cab_n, cab_t):
+	price = 0.0;
+	if cab_t == 'duplex':
+		k = 2;
+	else:
+		k = 1;
+
+	if cab_len < 1:
+		cab_len = 1
+	
+	price += k * get_price_of_component(con_l)
+	price += k * get_price_of_component(con_r)
+	price += cab_len * get_price_of_component(cab_n)
+
+	return '{:.2f}'.format(price)
+
 
 @app.route('/')
 def index():
@@ -115,94 +183,19 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html'), 500
 
-@app.route('/level1')
-def level1():
-	level = get_level('Сварочные аппараты ВОЛС')
-	return render_template('level_base.html', level=level)
 
-@app.route('/level2')
-def level2():
-	level = get_level('Измерительные приборы')
-	return render_template('level_base.html', level=level)
+@app.route('/getlevel', methods=['GET','POST'])
+def getlevel():
+	if request.method == 'GET':
+		return abort(404)
 
-@app.route('/level3')
-def level3():
-	level = get_level('Техническое обслуживание и ремонт приборов')
-	return render_template('level_base.html', level=level)
+	level_name = request.get_json().get("page")
+	level = get_level(level_name)
 
-@app.route('/level4')
-def level4():
-	level = get_level('Кроссовое оборудование')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level5')
-def level5():
-	level = get_level('Пигтейлы оптические')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level6')
-def level6():
-	level = get_level('Розетки оптические')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level7')
-def level7():
-	level = get_level('Патч-корды')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level8')
-def level8():
-	level = get_level('Материалы для производства патч-кордов')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level9')
-def level9():
-	level = get_level('Расходные материалы и инструмент')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level10')
-def level10():
-	level = get_level('Аттенюаторы')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level11')
-def level11():
-	level = get_level('Разветвители оптические')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level12')
-def level12():
-	level = get_level('Кабели связи')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level13')
-def level13():
-	level = get_level('Кабельная арматура')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level14')
-def level14():
-	level = get_level('Муфты для кабелей связи')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level15')
-def level15():
-	level = get_level('Материалы для распределительных сетей')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level16')
-def level16():
-	level = get_level('Линейные сооружения связи')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level17')
-def level17():
-	level = get_level('Шкафы и стойки')
-	return render_template('level_base.html', level=level)
-
-@app.route('/level18')
-def level18():
-	level = get_level('Оборудование связи')
+	if level_name == u'Патч-корды':
+		data_for_calc = get_data_for_calculator() 
+		return render_template('level_patch.html', level=level, 
+												   calc=data_for_calc)
 	return render_template('level_base.html', level=level)
 
 @app.route('/search', methods=['POST'])
@@ -210,3 +203,43 @@ def search():
 	userRequest = request.get_json()
 	level = search_on_db(userRequest['text'])
 	return render_template('level_base.html', level=level)
+
+@app.route('/calculatepatch', methods=['POST'])
+def calculatepatch():
+	userPatch = request.get_json()
+	connectorLeft = userPatch['connectorLeft']
+	connectorRight = userPatch['connectorRight']
+	mod = userPatch['mod']
+	diametr = userPatch['diametr']
+	cabel_type = userPatch['typeConnection']
+	connector_left_name = '-'.join([
+		connectorLeft,
+		mod,
+		diametr
+		]) + u'мм'
+	connector_right_name = '-'.join([
+		connectorRight,
+		mod,
+		diametr
+		]) + u'мм'
+	cabel_name = u'{}мм {}, {}'.format(diametr,
+									   cabel_type,
+									   userPatch['typeCabel'].split(' --- ')[0])
+	cabel_lenght = float(userPatch['lenghtCabel'])
+	
+
+	patch_name = u'ШОС-{:.1f}-{}-{}-{}-{}-{:.1f}м'.format(float(diametr), 
+														  mod,
+														  connectorLeft,
+														  connectorRight,
+														  cabel_type,
+														  cabel_lenght)
+	
+	price = get_price_of_patch(cabel_lenght, 
+							   connector_left_name, 
+							   connector_right_name,
+							   cabel_name,
+							   cabel_type)
+	return render_template('single_patch.html', name=patch_name, price=price)
+
+

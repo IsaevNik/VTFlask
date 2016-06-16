@@ -1,0 +1,185 @@
+{%extends "level_base.html"%}
+{% block calculator %}
+	<div class="calculator container-fluid hidden-sm hidden-xs">
+		<h3 class="text-center"> Калькулятор стоимости патч-корда </h3>
+		<p class="text-center"> Сконфигурируйте патч-корд из составных частей, а мы посчитаем его стоимость. </p>
+		<div class="row choice-panel">
+			<div class="choice col-sm-2">
+				<div class="panel panel-default choice-subpanel">
+					<div class="panel-heading choice-subpanel-heading text-center">Тип волокна</div>
+					<div class="panel-body choice-subpanel-body" id="mod-choice">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsMod" id="sm-mod" value="SM" checked>
+								SM
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsMod" id="mm-mod" value="MM">
+								MM
+							</label>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="choice col-sm-2">
+				<div class="panel panel-default choice-subpanel">
+					<div class="panel-heading choice-subpanel-heading text-center">Диаметр кабеля</div>
+					<div class="panel-body choice-subpanel-body" id="diametr-choice">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsD" id="d2" value="2.0" checked>
+								2.0
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsD" id="d3" value="3.0">
+								3.0
+							</label>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="choice col-sm-4">
+				<div class="panel panel-default choice-subpanel">
+					<div class="panel-heading choice-subpanel-heading text-center">Тип разъёмов</div>
+					<div class="panel-body choice-subpanel-body" id="connector-choice">
+						<div class=row-fluid>
+							<div class="col-sm-6" id="connectors-left">
+								<select class="form-control connectors con-left connectors-2-SM in">
+									{%for conn in calc.get('коннектор SM 2')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+								<select class="form-control connectors connectors-3-SM">
+									{%for conn in calc.get('коннектор SM 3')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+								<select class="form-control connectors connectors-2-MM">
+									{%for conn in calc.get('коннектор MM 2')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+								<select class="form-control connectors connectors-3-MM">
+									{%for conn in calc.get('коннектор MM 3')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+							</div>
+							<div class="col-sm-6" id="connectors-right">
+								<select class="form-control connectors connectors-2-SM in">
+									{%for conn in calc.get('коннектор SM 2')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+								<select class="form-control connectors connectors-3-SM">
+									{%for conn in calc.get('коннектор SM 3')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+								<select class="form-control connectors connectors-2-MM">
+									{%for conn in calc.get('коннектор MM 2')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+								<select class="form-control connectors connectors-3-MM">
+									{%for conn in calc.get('коннектор MM 3')%}
+										<option>{{conn['name']}}</option>
+									{%endfor%}
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="choice col-sm-2">
+				<div class="panel panel-default choice-subpanel">
+					<div class="panel-heading choice-subpanel-heading text-center">Тип связи</div>
+					<div class="panel-body choice-subpanel-body" id="type-choice">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsT" id="type-s" value="simplex" checked>
+								simplex
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsT" id="type-d" value="duplex">
+								duplex
+							</label>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="choice col-sm-2">
+				<div class="panel panel-default choice-subpanel">
+					<div class="panel-heading choice-subpanel-heading text-center">Длина(м)</div>
+					<div class="panel-body choice-subpanel-body center-block">
+						<input type="number" class="form-control" id="lenght-choice" value="0.3"/>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div class="row button-panel">
+			<div class="col-sm-7">
+				<div id="choice-cabel">
+					<label>Выберите подходящий кабель</label>
+					<select class="form-control cabel cabel-2-SM-simplex in">
+						{%for cable in calc.get('кабель SM 2 simplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-2-SM-duplex">
+						{%for cable in calc.get('кабель SM 2 duplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-3-SM-simplex">
+						{%for cable in calc.get('кабель SM 3 simplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-3-SM-duplex">
+						{%for cable in calc.get('кабель SM 3 duplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-2-MM-simplex">
+						{%for cable in calc.get('кабель MM 2 simplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-2-MM-duplex">
+						{%for cable in calc.get('кабель MM 2 duplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-3-MM-simplex">
+						{%for cable in calc.get('кабель MM 3 simplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+					<select class="form-control cabel cabel-3-MM-duplex">
+						{%for cable in calc.get('кабель MM 3 duplex')%}
+							<option>{{cable['name']}} --- {{cable['price']}} руб/м</option>
+						{%endfor%}
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-3 col-sm-offset-1">
+			<button type="button" class="btn btn-default" id="calculate-patch">Посчитать стоимость</button>
+			</div>
+		</div>
+		<div class="user-patch-line">
+		</div>
+	</div>
+
+<script src="{{ url_for('static', filename = 'js/calculator.js')}}">
+
+</script>
+{% endblock %}
+
+

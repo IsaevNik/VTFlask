@@ -1,3 +1,5 @@
+{%block calculator%}
+{%endblock%}
 <div class="panel-group" id="accordion">
 
     {% if level.get('not found') %}
@@ -63,8 +65,8 @@
 												<p><b>{{ item['price'] }}</b></p>
 											</div>
 											<div class="col-md-3 col-sm-4">
-												<img src="static/shop/rub.png" class="img-responsive hidden-sm">
-												<img src="static/shop/rub_sm.png" class="img-responsive visible-sm">
+												<img src="{{ url_for('static', filename = 'shop/rub.png')}}" class="img-responsive hidden-sm">
+												<img src="{{ url_for('static', filename = 'shop/rub_sm.png')}}" class="img-responsive visible-sm">
 											</div>
 										</div>
 									</div>

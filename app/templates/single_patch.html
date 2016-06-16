@@ -1,0 +1,33 @@
+
+<div class="row">
+	<div class="col-sm-6 item_name">
+		<p class="text-left"><span class="glyphicon glyphicon-ok"></span> {{ name }}</p>
+	</div>
+	<div class="col-sm-2 col-sm-offset-2 counter"> 
+		<div class="row"> 
+			<div class="col-sm-8 input-group" id="count-patch"> 
+				<span class="input-group-addon up">&#9650;</span> 
+				<input type="number" class="form-control" value="1"/>
+				<span class="input-group-addon down">&#9660;</span> 
+			</div> 
+			<div class="col-sm-3"> 
+				<i class="material-icons  shoping-cart" title="Добавить в корзину">shopping_cart</i> 
+			</div> 
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<div class="row price">
+			<div class="item-coast col-md-7 col-md-offset-2 col-sm-7 col-md-offset-1">
+				<p><b>{{ price }}</b></p>
+			</div>
+			<div class="col-md-3 col-sm-4">
+				<img src="{{ url_for('static', filename = 'shop/rub.png')}}" class="img-responsive hidden-sm">
+				<img src="{{ url_for('static', filename = 'shop/rub_sm.png')}}" class="img-responsive visible-sm">
+			</div>
+		</div>
+	</div>
+</div>
+							
+<script>
+	$.getScript('static/js/sublevel.js');
+</script>

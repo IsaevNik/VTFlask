@@ -1,12 +1,10 @@
 var main = function(){
 	
-	$(".sublevel").load("/level1");
+	
 	var telephon_pattern = /^(\+?\d{1}\(?\d{3}\)?\d{3}-?\d{2}-?\d{2})$/;
  	var name_pattern = /^([а-яА-Я ]+)$/;
  	var mail_pattern = /^[\w-\.]+@[\w-]+\.[a-z]{2,3}$/;
  	var sum = 0.0;
-
-
 
  	var successMessage = $('<div class="alert alert-success"></div>')
         .append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')
@@ -31,12 +29,23 @@ var main = function(){
 		$('.comment').slideToggle('slow');
 	});
 	$(".levels li").on('click',function(){
-		var href = $('a',this).attr('href');
+		var level_name = $('a',this).text()
 		$(".levels li.active").toggleClass("active");
 		$(this).toggleClass("active");
-		$(".sublevel").load(href);
+		$.ajax({
+ 			url: '/getlevel',
+ 			type: 'POST',
+ 			contentType: "application/json; charset=utf-8",			
+ 			data: JSON.stringify({"page" : level_name}),
+ 			
+ 			success: function(response) {
+ 				$('.sublevel').html(response);
+ 			},
+ 		});
 		return false;
 	});
+	
+	$(".levels li.active").focus().click();
 	
 	$('.user-form input').on('focus',function(){
  		$(this).next().removeClass("glyphicon-ok");
@@ -149,8 +158,6 @@ var main = function(){
  			data_of_request['items'].push(item_for_send);
  		});
  		
- 		
-
  		$.ajax({
  			url: '/equipments',
  			type: 'POST',
@@ -168,6 +175,13 @@ var main = function(){
  		
  	};
 
+ 	$('#search-input').keypress(function(e) {
+        if(e.which == 13) {
+            jQuery(this).blur();
+            jQuery('.search span').focus().click();
+        }
+    });
+
  	$('.search span').on('click', function(){
  		var userSearchRequest = {};
 
@@ -183,7 +197,7 @@ var main = function(){
  				dataType: "html",
 	 			success: function(response) {
 	 				$(".sublevel").html(response);
-	 				$('.collapse').toggle();
+	 				$('.collapse').collapse('toggle');
 	 			},
 	 			error: function(error) {
 	 				$('.sublevel').append(errorMessage("Ошибка на сервере!","Мы не можем обработать ваш запрос"));
@@ -192,7 +206,7 @@ var main = function(){
  		}
  	});
 
- 	$('.submit-button').on('click',function(){
+ 	$('#submit-request').on('click',function(){
  		
  		$('.alert').remove();
 
