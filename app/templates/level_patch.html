@@ -3,26 +3,10 @@
 	<div class="calculator container-fluid hidden-sm hidden-xs">
 		<h3 class="text-center"> Калькулятор стоимости патч-корда </h3>
 		<p class="text-center"> Сконфигурируйте патч-корд из составных частей, а мы посчитаем его стоимость. </p>
+		<div class="row-fluid">
+			<img src="{{ url_for('static', filename = 'img/shos.png')}}" class="img-responsive center-block"></img>
+		</div>
 		<div class="row choice-panel">
-			<div class="choice col-sm-2">
-				<div class="panel panel-default choice-subpanel">
-					<div class="panel-heading choice-subpanel-heading text-center">Тип волокна</div>
-					<div class="panel-body choice-subpanel-body" id="mod-choice">
-						<div class="radio">
-							<label>
-								<input type="radio" name="optionsMod" id="sm-mod" value="SM" checked>
-								SM
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="optionsMod" id="mm-mod" value="MM">
-								MM
-							</label>
-						</div>
-					</div>
-				</div>	
-			</div>
 			<div class="choice col-sm-2">
 				<div class="panel panel-default choice-subpanel">
 					<div class="panel-heading choice-subpanel-heading text-center">Диаметр кабеля</div>
@@ -42,9 +26,28 @@
 					</div>
 				</div>	
 			</div>
+			<div class="choice col-sm-2">
+				<div class="panel panel-default choice-subpanel">
+					<div class="panel-heading choice-subpanel-heading text-center">Тип волокна</div>
+					<div class="panel-body choice-subpanel-body" id="mod-choice">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsMod" id="sm-mod" value="SM" checked>
+								SM
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsMod" id="mm-mod" value="MM">
+								MM
+							</label>
+						</div>
+					</div>
+				</div>	
+			</div>
 			<div class="choice col-sm-4">
 				<div class="panel panel-default choice-subpanel">
-					<div class="panel-heading choice-subpanel-heading text-center">Тип разъёмов</div>
+					<div class="panel-heading choice-subpanel-heading text-center">Тип коннекторов</div>
 					<div class="panel-body choice-subpanel-body" id="connector-choice">
 						<div class=row-fluid>
 							<div class="col-sm-6" id="connectors-left">
@@ -97,7 +100,7 @@
 			</div>
 			<div class="choice col-sm-2">
 				<div class="panel panel-default choice-subpanel">
-					<div class="panel-heading choice-subpanel-heading text-center">Тип связи</div>
+					<div class="panel-heading choice-subpanel-heading text-center">Тип патч-корда</div>
 					<div class="panel-body choice-subpanel-body" id="type-choice">
 						<div class="radio">
 							<label>
@@ -118,7 +121,7 @@
 				<div class="panel panel-default choice-subpanel">
 					<div class="panel-heading choice-subpanel-heading text-center">Длина(м)</div>
 					<div class="panel-body choice-subpanel-body center-block">
-						<input type="number" class="form-control" id="lenght-choice" value="0.3"/>
+						<input type="number" class="form-control" id="lenght-choice" value="0.5"/>
 					</div>
 				</div>	
 			</div>

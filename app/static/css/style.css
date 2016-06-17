@@ -560,6 +560,9 @@ textarea {
 	padding: 0 2px;
 	vertical-align: middle;
 }
+.choice-panel {
+	margin-top: 10px;
+}
 .choice-subpanel-body {
 	background-color: #f5f5f5;
 	padding: 0;

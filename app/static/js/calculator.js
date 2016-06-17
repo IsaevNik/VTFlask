@@ -57,10 +57,14 @@ var main = function(){
 	});
 
 	$("#calculate-patch").on("click", function() {
+		$('.alert').remove();
 		var lenghtCabel = $('#lenght-choice').val();
 		if (lenghtCabel == '') {
 			$('#lenght-choice').text('1,0');
 			lenghtCabel = 1;
+		} else if (Number(lenghtCabel) < 0.5) {
+			$('.calculator').append(errorMessage("Ошибка!"," Длина патч-корда не может быть меньше 0.5 м"));
+			return false;
 		}
 		var userPatch = {
 			'mod' : $('input[type=radio][name=optionsMod]:checked').val(),
@@ -80,9 +84,9 @@ var main = function(){
 	 				$('.user-patch-line').html(response);
 	 			},
 	 			error: function(error) {
-	 				$('.calculator').append(errorMessage("Ошибка на сервере!","Мы не можем обработать ваш запрос"));
+	 				$('.calculator').append(errorMessage("Ошибка на сервере!"," Мы не можем обработать ваш запрос"));
 	 			}
- 			});
+ 		});
 	});
 }
 $(document).ready(main);

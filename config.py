@@ -15,3 +15,4 @@ MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 MAIL_SENDER = 'VOLStelecom shop <shop@volstelecom.ru>'
 MAIL_MANAGER = 'kooperative@mail.ru'
 #MAIL_MANAGER = 'elukashin@volstelecom.ru'
+#MAIL_MANAGER = 'dkurkov@volstelecom.ru'
