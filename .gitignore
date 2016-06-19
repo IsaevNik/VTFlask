@@ -1,0 +1,4 @@
+tmp/py/test.py
+venv/
+dump.sql
+*.pyc
