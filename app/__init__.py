@@ -18,5 +18,14 @@ db = MySQLDatabase(app.config['DATABASE_NAME'],
 		**{'password': app.config['DATABASE_PASSWORD'], 
 		   'user': app.config['DATABASE_USER']})
 
+@app.before_request
+def _db_connect():
+	db.connect()
+
+@app.teardown_request
+def _db_close(exc):
+	if not db.is_closed():
+		db.close()
+
 mail = Mail(app)
 from app import views
